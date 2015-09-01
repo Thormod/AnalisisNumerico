@@ -13,38 +13,43 @@ $(document).ready(function() {
   	});
 
 	$("#method1").on("click", function(event) {
+		
 		//Variables
 		var delta = $("#delta").val();
 		var iterations = $("#iteration").val();
 
-		var scope = JSON.parse(document.getElementById("varibles").value);
-		
-		var x0 = scope.x;
-		var y0 = valueOf({"x":x0, "y":0});
-
-		if(y0 == 0){
-			alert("Es raiz");
+		if(iterations<=0){
+			alert("Las interaciones deben ser mayores a 0")
 		}else{
-			var x1 = parseFloat(x0)+parseFloat(delta);
-			var y1 = valueOf({"x":x1, "y":0});
-			var cont = 1;
 
-			while( (y0*y1>0) && (y1!=0) && (cont<iterations)){
-				x0 = x1;
-				y0 = y1;
-				x1 = parseFloat(x0)+parseFloat(delta);
-				y1 = valueOf({"x":x1, "y":0});
-				cont++;
-			}
-			if(y1 == 0){
-				alert(x1+" es raiz");
-			}else if( y0*y1 < 0){
-				alert("Raiz entre x0 "+x0+" y x1 "+x1+".");
+			var scope = JSON.parse(document.getElementById("varibles").value);
+			
+			var x0 = scope.x;
+			var y0 = valueOf({"x":x0, "y":0});
+
+			if(y0 == 0){
+				alert("Es raiz");
 			}else{
-				alert("Fracasó")
+				var x1 = parseFloat(x0)+parseFloat(delta);
+				var y1 = valueOf({"x":x1, "y":0});
+				var cont = 1;
+
+				while( (y0*y1>0) && (y1!=0) && (cont<iterations)){
+					x0 = x1;
+					y0 = y1;
+					x1 = parseFloat(x0)+parseFloat(delta);
+					y1 = valueOf({"x":x1, "y":0});
+					cont++;
+				}
+				if(y1 == 0){
+					alert(x1+" es raiz");
+				}else if( y0*y1 < 0){
+					alert("Raiz entre x0 = "+x0+" y x1 = "+x1+".");
+				}else{
+					alert("Fracasó")
+				}
 			}
 		}
-	
 
 	});
 	
