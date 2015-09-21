@@ -18,8 +18,8 @@ $(document).ready(function() {
 		var delta = $("#delta").val();
 		var iterations = $("#iteration").val();
 
-		if(iterations<=0){
-			alert("Las interaciones deben ser mayores a 0")
+		if(iterations<=0 || delta==0){
+			alert("Las interaciones deben ser mayores a 0 y el delta diferente de 0")
 		}else{
 
 			var scope = JSON.parse(document.getElementById("varibles").value);
@@ -44,7 +44,7 @@ $(document).ready(function() {
 				if(y1 == 0){
 					alert(x1+" es raiz");
 				}else if( y0*y1 < 0){
-					alert("Raiz entre x0 = "+x0+" y x1 = "+x1+".");
+					alert("Raiz entre x0 = "+ x0 +" y x1 = "+ x1 +".");
 				}else{
 					alert("Fracasó")
 				}
