@@ -110,8 +110,8 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="list-group">
-                                <!--<textarea class="form-control" rows="3" id="input"></textarea>-->
-                                <input type="text" name="" id="input" value="x-3">
+                                <textarea class="form-control" rows="3" id="input"></textarea>
+                                <!--<input type="text" name="" id="input" value="x-3">-->
                                 <span>Variables:</span>
                                 <input class="form-control" id="varibles" value='{"x":2, "y":0}'>
                             </div>
@@ -222,7 +222,7 @@
         <!-- /#wrapper -->
 
         <hr>
-        <div id="incremental"> <h1 class="page-header"> Bisection </h1> </div>
+        <div id="bisection"> <h1 class="page-header"> Bisection </h1> </div>
         <div class="row">
              <!-- /.col-lg-8 -->
                 <div class="col-lg-4">
@@ -240,7 +240,7 @@
                                 <span>Tolerance:</span>
                                 <input class="form-control" id="tol" value='0.1'>
                                 <span>Iterations:</span>
-                                <input class="form-control" id="iteration" value='100'>
+                                <input class="form-control" id="iteration_b" value='100'>
  
                             </div>
                             <input type="button" class="btn btn-primary btn-lg btn-block" name="" id="method2" value="Calculate">
@@ -269,25 +269,319 @@
                             <i class="fa fa-table fa-fw"></i> Result table:
                         </div>
                         <!-- /.panel-heading -->
-                        <div class="panel-body">
-                           <table class="table" id="bisection_table">
+                        <div class="panel-body table-outter">
+                            <table class="table" id="bisection_table" style="width: 670px;">
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>x</th>
-                                            <th>f(x)</th>
+                                            <th>xinf</th>
+                                            <th>xsup</th>
+                                            <th>xmed</th>
+                                            <th>f(xmed)</th>
                                             <th>Error</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody style="overflow: auto; max-width: 670px;">
                                        
                                     </tbody>
-                                </table>
+                            </table>
                         </div>
                         <!-- /.panel-body -->
                     </div>
                     <!-- /.panel -->
                 </div>
+
+
+    </div>
+    <!-- /#wrapper -->
+
+    <hr>
+        <div id="falseRule"> <h1 class="page-header"> False Rule </h1> </div>
+        <div class="row">
+             <!-- /.col-lg-8 -->
+                <div class="col-lg-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-code fa-fw"></i> Variables:
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body table-outter">
+                            <div class="list-group">
+                                <span>XInf:</span>
+                                <input class="form-control" id="xinf_f" value='2.9'>
+                                <span>XSup:</span>
+                                <input class="form-control" id="xsup_f" value='3.1'>
+                                <span>Tolerance:</span>
+                                <input class="form-control" id="tol_f" value='0.1'>
+                                <span>Iterations:</span>
+                                <input class="form-control" id="iteration_f" value='100'>
+ 
+                            </div>
+                            <input type="button" class="btn btn-primary btn-lg btn-block" name="" id="method3" value="Calculate">
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-plus fa-fw"></i> Solution:
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <section id="false_solution"></section>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.row -->
+                <div class="col-lg-8">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-table fa-fw"></i> Result table:
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body table-outter">
+                            <table class="table" id="false_table" style="width: 670px;">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>xinf</th>
+                                            <th>xsup</th>
+                                            <th>xmed</th>
+                                            <th>f(xmed)</th>
+                                            <th>Error</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody >
+                                       
+                                    </tbody>
+                            </table>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+
+
+    </div>
+    <!-- /#wrapper -->
+
+    <hr>
+    <div id="fixed_point"> <h1 class="page-header"> Fixed Point </h1> </div>
+    <div class="row">
+         <!-- /.col-lg-8 -->
+            <div class="col-lg-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-code fa-fw"></i> Variables:
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <div class="list-group">
+                            <span>G(X):</span>
+                            <textarea class="form-control" rows="3" id="input_f"></textarea>
+                            <span>X:</span>
+                            <input class="form-control" id="xnumber" value='-4'>
+                            <span>Tolerance:</span>
+                            <input class="form-control" id="tol_fp" value='0.00005'>
+                            <span>Iterations:</span>
+                            <input class="form-control" id="iteration_fp" value='100'>
+
+                        </div>
+                        <input type="button" class="btn btn-primary btn-lg btn-block" name="" id="method4" value="Calculate">
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-plus fa-fw"></i> Solution:
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <section id="fixed_point_solution"></section>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+            <!-- /.row -->
+            <div class="col-lg-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-table fa-fw"></i> Result table:
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body table-outter">
+                        <table class="table" id="fixed_point_table" style="width: 670px;">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>x</th>
+                                        <th>f(x)</th>
+                                        <th>Error</th>
+                                    </tr>
+                                </thead>
+                                <tbody style="overflow: auto; max-width: 670px;">
+                                   
+                                </tbody>
+                        </table>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+
+
+    </div>
+    <!-- /#wrapper -->
+
+    <hr>
+    <div id="fixed_point"> <h1 class="page-header"> Newton </h1> </div>
+    <div class="row">
+         <!-- /.col-lg-8 -->
+            <div class="col-lg-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-code fa-fw"></i> Variables:
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <div class="list-group">
+                            <span>f'(X):</span>
+                            <textarea class="form-control" rows="3" id="input_n"></textarea>
+                            <span>X0:</span>
+                            <input class="form-control" id="xnumber_n" value='2'>
+                            <span>Tolerance:</span>
+                            <input class="form-control" id="tol_n" value='0.000005'>
+                            <span>Iterations:</span>
+                            <input class="form-control" id="iteration_n" value='100'>
+
+                        </div>
+                        <input type="button" class="btn btn-primary btn-lg btn-block" name="" id="method5" value="Calculate">
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-plus fa-fw"></i> Solution:
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <section id="newton_solution"></section>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+            <!-- /.row -->
+            <div class="col-lg-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-table fa-fw"></i> Result table:
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body table-outter">
+                        <table class="table" id="newton_table" style="width: 670px;">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>x</th>
+                                        <th>f(x)</th>
+                                        <th>f'(x)</th>
+                                        <th>Error</th>
+                                    </tr>
+                                </thead>
+                                <tbody style="overflow: auto; max-width: 670px;">
+                                   
+                                </tbody>
+                        </table>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+
+
+    </div>
+    <!-- /#wrapper -->
+
+
+    <hr>
+    <div id="secant"> <h1 class="page-header"> Secant </h1> </div>
+    <div class="row">
+         <!-- /.col-lg-8 -->
+            <div class="col-lg-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-code fa-fw"></i> Variables:
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <div class="list-group">
+                            <span>X0:</span>
+                            <input class="form-control" id="x0_s" value='10'>
+                            <span>X1:</span>
+                            <input class="form-control" id="x1_s" value='15'>
+                            <span>Tolerance:</span>
+                            <input class="form-control" id="tol_s" value='0.00001'>
+                            <span>Iterations:</span>
+                            <input class="form-control" id="iteration_s" value='100'>
+
+                        </div>
+                        <input type="button" class="btn btn-primary btn-lg btn-block" name="" id="method6" value="Calculate">
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-plus fa-fw"></i> Solution:
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <section id="secant_solution"></section>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+            <!-- /.row -->
+            <div class="col-lg-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-table fa-fw"></i> Result table:
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body table-outter">
+                        <table class="table" id="secant_table" style="width: 670px;">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>xi</th>
+                                        <th>f(xi)</th>
+                                        <th>Error</th>
+                                    </tr>
+                                </thead>
+                                <tbody style="overflow: auto; max-width: 670px;">
+                                   
+                                </tbody>
+                        </table>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
 
 
     </div>
