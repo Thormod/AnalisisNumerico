@@ -1,0 +1,44 @@
+Busqueda incremental
+e^(-(x^2)-5)-sin(7*x)*log((x^2)+1,10)+1.2
+
+Fixed Point:
+Values: (0.5)
+
+f(X):
+EXP(-(B4^2)+1) - 3*B4*COS(B4+4)-5*B4+3
+e^(-(x^2)+1) - 3*x*cos(x+4)-5*x+3
+
+g(X):
+B4-((EXP(-(B4^2)+1)-3*B4*COS(B4+4)-5*B4+3)/(-2*B4*EXP(-(B4^2)+1)-3*COS(B4+4)+3*B4*SENO(B4+4)-5))
+x-((e^(-(x^2)+1)-3*x*cos(x+4)-5*x+3)/ (-2*x*e^(-(x^2)+1)-3*cos(x+4)+3*x*sin(x+4)-5))
+
+Newton: 
+Values: -0.5
+
+f(X):
+SENO(B5)*EXP((-B5)+4) -(B5) + 5
+sin(x)*e^(-x+4)-x+5
+
+f'(X):
+-SENO(B6)*EXP(-B6+4)+COS(B6)*EXP(-B6+4)-1
+sin(x)*e^(-x+4)+cos(x)*e^(-x+4)-1
+
+Secant:
+Values: x0=1    x1= 2
+
+f(X): 
+LN((B8^2)+1)*SENO(B8-4)-EXP(-(B8)+3)+6*B8
+log((x^2)+1,e)*sin(x-4)-e^(-(x)+3)+6*x
+
+
+Multiple Roots:
+Values: -0.7
+
+f(x): 
+sin(x)*e^(-x+4)-x+5
+
+f'(x):
+-sin(x)*e^(-x+4)+cos(x)*e^(-x+4)-1
+
+f''(x):
+-2*cos(x)*e^(-x+4)

@@ -1,0 +1,1585 @@
+
+dialog {
+  display: none;
+  position: absolute;
+  /*
+  left: 0;
+  right: 0;
+  */
+  margin: auto;
+  border: solid;
+  padding: 1em;
+  background: white;
+  color: black;
+}
+
+dialog[open] {
+  display: block;
+}
+
+dialog::backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+
+details {
+  display: block;
+}
+
+summary {
+  display: block;
+}
+
+input, textarea, select {
+  -ms-touch-action: none;
+  touch-action: none;
+}
+
+button {
+  display: inline-block;
+  padding: 2px 12px;
+  margin: 1px;
+  line-height: 20px;
+  color: #333333;
+  text-align: center;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+  vertical-align: middle;
+  cursor: pointer;
+  background-color: #f5f5f5;
+  background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
+  border: 1px solid #cccccc;
+  border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  border-bottom-color: #b3b3b3;
+  border-radius: 2px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+button[disabled] {
+  cursor: default;
+  opacity: 0.65;
+}
+
+button:hover,
+button:focus {
+  background-color: #c5c5c5;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+}
+
+button:active {
+  background-color: #a5a5a5;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.15), inset 0 0 12px rgba(0, 0, 0, 0.55);
+}
+
+select,
+textarea,
+input[type="number"],
+input[type="text"] {
+  width: 206px;
+  display: inline-block;
+  height: 26px;
+  padding: 2px 6px;
+  margin: 1px;
+  font-size: 15px;
+  line-height: 20px;
+  color: black;
+  vertical-align: middle;
+  border-radius: 2px;
+  background: white;
+  border: 1px solid #cccccc;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+textarea {
+  height: auto;
+  resize: both;
+}
+
+/* --- */
+
+html {
+  scroll-behavior: smooth;
+  color: #242424;
+  padding: 12px;
+  padding-top: 0;
+  overflow-y: scroll;
+  background: white;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAAoCAIAAAAt2Q6oAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wMGQ0NJbe7urkAAABPSURBVFjD7dehDQAgDEXBgur+y4IrhgkwhHDPNzlR81tVxVFzRmZcue3xYNDQ0NDQ0NDQ0NDQn6HbGPUe2kb009DQ0NDQ0NDQ0NDQNuJuARrpGAHptOaWAAAAAElFTkSuQmCC");
+  background-position: -1px -1px;
+  font-size: 17px;
+}
+
+a:focus,
+details:focus,
+summary:focus,
+input:focus,
+textarea:focus,
+select:focus,
+button:focus,
+div:focus,
+span:focus {
+  outline: 2px solid #4D90FE;
+  outline-offset: -1px; /* Overrides this property in Chrome, fixes the positioning under the outline after Home/End */
+}
+
+::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+a,
+summary {
+  color: #4183c4;
+  text-decoration: none;
+}
+
+a:focus,
+a:hover,
+a:active,
+summary:focus,
+summary:hover,
+summary:active {
+  text-decoration: underline;
+}
+
+a:active,
+summary:active {
+  color: #2163a4;
+}
+
+input, button, select, textarea, optgroup, option {
+  font-size: 15px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* note: more specific rules are used to increase the priority */
+textarea.invalid,
+input[type="number"].invalid,
+input[type="text"].invalid {
+  background-color: #fee;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  max-width: 1444px;
+  /* TODO: javascript to increase max-width if needed */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+label,
+input[type="checkbox"],
+button {
+  cursor: pointer;
+}
+
+#header {
+  width: 100%;
+  padding-bottom: 2px;
+  border-bottom: 1px solid gray;
+  margin-bottom: 12px;
+  display: table;
+}
+
+.logo {
+  font-family: cursive;
+  font-size: 128%;
+  font-weight: bold;
+  display: table-cell;
+}
+
+#left {
+  vertical-align: top;
+  width: 200px;
+  margin-right: 12px;
+}
+
+#right {
+  vertical-align: top;
+  padding: 8px;
+  padding-top: 0;
+}
+
+#bigtable {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+#bigtable > div {
+  display: table-cell;
+}
+
+#footer {
+  width: 100%;
+  padding-top: 4px;
+  border-top: 1px solid gray;
+  text-align: center;
+  clear: both;
+  line-height: 20px;
+}
+
+#resdiv {
+  text-align: left;
+  vertical-align: middle;
+  padding-left: 2px;
+  padding-right: 2px;
+  border: 0;
+  overflow-y: hidden;
+  position: relative;
+}
+
+.menu {
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.menu > a,
+.menu > b {
+  padding: 4px;
+  min-height: 20px;
+  display: block;
+}
+
+.box {
+  width: 100%;
+  margin: 0;
+  margin-bottom: 12px;
+  border: 1px solid #aaa;
+  background-color: #eee;
+}
+
+.line {
+  clear: none;
+  width: 100%;
+/*border-bottom: 2px solid #4444AA;*/
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.line > tbody > tr > .right {
+  text-align: right;
+}
+
+/* workaround for line-breaking issue in Chrome, IE */
+.bbox > span {
+  display: inline-block;
+}
+
+.change-button {
+  height: auto;
+  width: auto;
+}
+
+.bbox button {
+  width: 13em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  /*overflow: hidden; - Opera */;
+}
+
+.bbox > .button-before-input > button {
+  width: 11em;
+}
+
+.bbox > .button-before-input > input {
+  width: 2em;
+}
+
+.det-buttons  > .button-before-input > input {
+  width: 3em;
+}
+
+.det-buttons > .button-before-input > button {
+  width: 16em;
+}
+
+.det-buttons > .button-after-input > input {
+  width: 5em;
+}
+
+.det-buttons > .button-after-input > button {
+  width: 3em;
+}
+
+.det-buttons > div > button {
+  width: 19em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+div.main {
+  text-align: center;
+}
+
+.button-after-input,
+.button-before-input {
+  white-space: nowrap;
+}
+
+.button-after-input > .a-input > input,
+.button-after-input > input,
+.button-before-input > button {
+  margin-right: 0;
+  border-right: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.button-after-input > button,
+.button-before-input > input,
+.button-before-input > .a-input > input {
+  margin-left: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.det-buttons > .button-after-input > input,
+.expression-input-container  > .button-after-input > input {
+  width: 21em;
+}
+
+.expression-input-container  > .button-after-input > .a-input > input {
+  width: 21em;
+  max-width: 100%;
+}
+
+.expression-input-container  > .button-after-input > .a-input {
+  max-width: 50%;
+}
+
+.det-buttons,
+.expression-input-container {
+  text-align: center;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.bbox2 > div > button {
+  width: 6em;
+}
+
+.bbox2 > div > .change-button {
+  width: auto;
+}
+
+.bbox2 > div > button > .operator {
+  display: inline-block;
+  width: 1em;
+  vertical-align: middle;
+}
+
+hr {
+  border: 1px solid silver;
+  border-bottom: 0;
+}
+
+.insert-buttons > div > button {
+  width: 8em;
+}
+
+.actline {
+  text-align: left;
+  border-top: 1px solid #999999;
+  padding-bottom: 16px;
+  padding-top: 6px;
+  clear: right;
+}
+
+.actline > .insert-buttons {
+  float: right;
+}
+
+h1, h2, h3, h4 {
+  margin: 2px;
+  padding: 0 1em;
+  font-weight: normal;
+  text-align: center;
+  line-height: 1.56em;
+  font-size: 156%;
+  font-family: inherit;
+}
+
+h2 {
+  line-height: 1.44em;
+  font-size: 144%;
+}
+
+h3 {
+  line-height: 1.32em;
+  font-size: 132%;
+}
+
+h4 {
+  line-height: 1.20em;
+  font-size: 120%;
+  text-align: left;
+}
+
+p {
+  margin: 0.5em 0;
+  padding: 0 1em;
+  text-align: justify;
+  text-indent: 2em;
+}
+
+/*TODO: remove unusable styles?*/
+strong {
+  color: #CC3333;
+}
+
+button {
+  vertical-align: middle;
+  height: 26px;
+}
+
+table.main {
+  width: 100%;
+  border-spacing: 0;
+  border: 0;
+  text-align: center;
+  empty-cells: show;
+}
+
+table.main > tbody > tr > td {
+  vertical-align: middle;
+  text-align: center;
+  border: 0;
+  padding: 2px;
+  margin: 0;
+}
+
+table.main > tbody > tr > td.tdmatrix {
+  width: 46%;
+  vertical-align: top;
+}
+
+.top {
+  vertical-align: top;
+}
+/* ---------- */
+.monospace {
+  font-family: monospace;
+}
+/* ------------------------------------------- */
+/* matrix */
+
+table.matrix {
+  /*font-family: cursive;*/
+  border: 0;
+  text-indent: 0;
+  border-spacing: 0;
+  border-collapse: separate;
+  margin-left: auto;
+  margin-right: auto;
+  empty-cells: show;
+  white-space: nowrap;
+}
+
+table.matrix > tbody > tr {
+  height: 1px;
+}
+
+table.matrix > tbody > tr > td {
+  vertical-align: middle;
+  padding: 0;
+  border: 0;
+  line-height: 0;
+}
+
+.matrix-table-input {
+  margin: 1px;
+  text-align: right;
+  max-width: 3.8em;
+  min-width: 3.8em;
+  width: 100em;
+}
+
+/* matrix */
+
+.matrix-img-brace {
+  width: 7px;
+  background-position: -20px center;
+}
+
+#br-left,
+#br-right,
+#br-brace {
+  width: 8px;
+  height: 100%;
+}
+
+#br-line,
+#br-pline {
+  width: 2px;
+  height: 100%;
+}
+
+/*
+
+.matrix .matrix-img-left,
+.matrix .matrix-img-right{
+  padding: 0;
+}
+
+.matrix .matrix-img-left,
+.matrix .matrix-img-right {
+  width: 4px;
+  border: 2px solid #555;
+}
+.matrix .matrix-img-left {
+  border-right-color: transparent;
+  border-top-left-radius: 10px 40px;
+  border-bottom-left-radius: 10px 40px;
+}
+.matrix .matrix-img-right{
+  border-left-color: transparent;
+  border-top-right-radius: 10px 40px;
+  border-bottom-right-radius: 10px 40px;
+}
+*/
+
+.mathmlcontainer {
+  display: inline-block;
+}
+
+.matrix-table  > div {
+  position: relative;
+}
+
+.textarea table {
+  display: none;
+}
+
+/* Opera 12 needs wrap="off" */
+/* <input>.scrollLeft is always 0 in Opera 12 / IE 11 => use <textarea> instead */
+textarea[wrap=off] {
+  white-space: pre;
+  word-wrap: normal;
+}
+
+.textarea textarea {
+  overflow: auto;
+  width: 100%;
+  min-width: 230px;
+  min-height: 90px;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+}
+
+.cells textarea {
+  display: none;
+}
+
+.langEnOnly,
+.langRuOnly {
+  display: none;
+}
+
+.langEnOnly:lang(en),
+.langRuOnly:lang(ru) {
+  display: block;
+}
+
+/* (!) more specific selectors */
+
+a.langEnOnly,
+a.langRuOnly {
+  display: none;
+}
+
+a.langEnOnly:lang(en),
+a.langRuOnly:lang(ru) {
+  display: block;
+}
+
+/* .matrix-menu */
+
+.matrix-container {
+  position: relative;
+  display: inline-block;
+  cursor: move;
+}
+
+.matrix-menu-show {
+  /* button */
+  box-shadow: none;
+  border: none;
+  background-color: transparent;
+  line-height: 8px;
+
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  right: -12px;
+  bottom: 0;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAD+SURBVHjaYvz//z8DJYCJgUIwDAxggTFycnL+MzMzM4AwOzs7Azc3NwMnJyeY5uLiAouBMBsbGwMw4L96e3vzoBjw69evOXJycinq6uoMrKysYIUwDOKDMMjwJ0+e/GdkZJwM08eIHI0ZGRkLgIbEgwz58+cPAxMTE9hWHh4esEvev3/P8OXLl46QkJBKrGEwY8aMBKANi2/dugW2GWgTGLOwsIBsZnj+/Hk/smYMF8BAdnb2SllZ2TAtLS2wQS9evADZPr+wsDAJXS0jrpSYm5u7Rl5ePhjk9zdv3ixtbm6OwRsL6AAYqBFAZ68HekG/v78/Bpc6xtG8wAAQYADNAlnnEq1XFAAAAABJRU5ErkJggg==");
+  cursor: pointer;
+  padding: 4px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  /*TODO: fix ? */
+  z-index: 1;
+}
+
+.matrix-menu-show::-moz-selection {
+  background: transparent;
+}
+
+.matrix-menu-show::selection {
+  background: transparent;
+}
+
+.matrix-menu-show:hover {
+  background-color: #ccc;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.matrix-menu-show:active {
+  background-color: #aaa;
+}
+
+.matrix-menu-dialog {
+  margin: 0;
+  margin-left: -6px;
+  padding: 0;
+  z-index: 1;
+  background: white;
+  border: 1px solid silver;
+  list-style: none;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.275);
+}
+
+.matrix-menu-dialog > .menuitem {
+  padding: 6px;
+  display: block;
+  font-size: smaller;
+  white-space: nowrap;
+  cursor: pointer;
+  color: #333;
+}
+
+.matrix-menu-dialog > .menuitem:hover {
+  background: #bbc;
+}
+
+.matrix-menu-dialog > .menuitem:active {
+  background: #99b;
+}
+
+#frdigits {
+  width: 5em;
+  vertical-align: baseline;
+}
+
+/*
+.nowrap {
+  white-space: nowrap;
+}*/
+
+.text-align-center {
+  text-align: center;
+}
+
+.slu-buttons {
+  display: inline-table;
+}
+
+.slu-buttons > div {
+  display: table-row;
+}
+
+.slu-buttons > div > button {
+  width: 100%;
+  min-width: 18em;
+}
+
+.language {
+  display: table-cell;
+  text-align: right;
+  vertical-align: top;
+}
+
+.clear {
+  clear: both;
+}
+
+.ads-container {
+  text-align: center;
+}
+
+.ads-container  > div {
+  display: inline-block;
+}
+
+.drop-target .matrix-table {
+  outline: 1px solid red;
+  box-shadow: inset 0 0 12px red;
+}
+
+.matrix-system,
+.matrix-determinant,
+.matrix-with-braces {
+  border: 2px solid #555;
+  border-radius: 10px/40px;
+  padding: 8px;
+  display: inline-block;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  margin: 0 0.1em;
+}
+
+.matrix-determinant {
+  border-radius: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.matrix-system {
+  border: none;
+  padding: 6px 8px 6px 16px;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAABvCAIAAABjDndYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAALbSURBVFhH7ZnfS5NRGMef/8SLSNguGnUZscirfniRNwWWgSQUFOGFkDQoQ/rBRj9wRUpQijAKrUSzthgrKTCYzkiqgRsV6GrNRv6ALTZ4O+P97t3evee822FEWe/nzi98OOycx2fPOSOlDjaEnHgbvNvf/2Q2hb9rlpO+zh2k0hNGVpOcWejdApEOed+v5pHXIC+6d0G0dU9kEAJzOec/swmq3bOIsISZnPCfhUl0P5ZFWoZYzr87BpFsp58j1COUE/4uqNQy9Q1hBSJ5xXcYqv1UIIewEoG8Ft4Pl5qvzyE0IJCz4Ta4dGlqGaEBvpyN3oZKdG1mHakBvrw2fwMqk2d/IDVgyUUsWVJOTR6BytrWyFekBgQrv3BBJeoKSf5jWEclK0euQGVtaFpSXp+7uLWh0eFwNDZsu/BqBakB0co3sa51VBVYcpG/QnY8+sQZZVT4ciKkzUEtM6sIjfDl+YHdcMm1IJpIBHJuvHOzqtq6A8h48OTUsyZVZbsl7gQMjvyydztUuyeJjI9BTjx2QKXhDz8RCqiQM9rsZjJ+aejk6OhJqK1DaWRmlOToyDmYOz0fxcdTDuSor10VnecnallTRZMPqHLz5YC0zAojMlj8wE6vcajnotuwyMBB+K1D4oouoZPZmD1YPKp9tySPqkBZbcoWSYFI3x7YTq9keTJSpQo1aSMMnqx879MuYoJ7jQpXZs2guO3kMqk2vlzWw+TbkL4Blm6eFVSV/8dvDEvW8xvk1GQHVKL2Mck7xvL4UahEbWPCjvBPbdgflK07BlIDllxko8r1VFj+88NaJgu+rGTfaA+I0m+A5bL806X+iVjUPkWybs+Gea/EDKGsKEm39ibe8aDiZVvFRFay8XuQiXqCX5CWYSYz4qMnYFNTcAmhRhWZ7VxIuynR8Wn9IF9VZmRC7r3QyXHndQJxbXKB+NOrqDm5nyI0MulYLLaULm28jGygDllRfgEf9NDFRzL8pQAAAABJRU5ErkJggg==");
+  background-position: 0 50%;
+  background-repeat: no-repeat;
+  background-size: 12px 100%;
+}
+
+.matrix input, 
+.matrix textarea {
+  font-family: monospace;
+  margin: 1px 2px 1px 2px; /* for touch devices */
+}
+
+label > input.swap-mode {
+  opacity: 0;
+  height: 0;
+  width: 0;
+  margin: 0;
+  padding: 0;
+}
+
+label > input:checked + button {
+  box-shadow: inset 0 0 20px rgba(130, 200, 255, 0.5);
+}
+
+.show-comments {
+  display: block;
+  margin: 14px;
+}
+
+.twitter-share-button {
+  vertical-align: top;
+  display: inline-block;
+  padding: 2px 4px 2px 24px;
+  border: 1px solid #ccc;
+  color: #333;
+  text-decoration: none;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
+  border-radius: 3px;
+  cursor: pointer;
+  overflow: hidden;
+  background-color: #F8F8F8;
+  /*background-image: linear-gradient(to top, #FFFFFF, #DEDEDE), url("imgs/twitter.png");*/
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3gETCR4ildxDigAAAiJJREFUOMulUs9rE0EYfbPZ3WyyqbtraCzRsqkkSMCSVQq9KDUXxast4kUkRY/S5i8oPXiVqAcPQtPqVYRWRHoxKRQh0JpEC0Uamk2pGlpLdjXGbH6thzaQxIQe+mBgZt57H/O9+YhpmjgJKJwQFAAUylWhl6BQrgrh5Y3HwYWPsdBiKprVSnKTy2olmXz6oSmht1/mY3dHxySO0TvNwVeJlbQpBcDxQNWAoH3TQxddc3H1IDgT9D+i9EpjIG33BC69WE0n87rSWmA+vTuZtnsCcLoBXgBEF/TBYSGSI+FtyetdzP4ap2TB9h0cj1y/X778cj3Z+kwN1kFwfHtPFhpwujHpE95Fb3hnyQf14PqSxj2IZIwJAIC2B+ztwGMnWdN5lsnZBs51y8Ycl3wAMrRkY0uR5ewEnO5DRnQBogtq1RjqFawiWjIAMgBAKS5Hanp06PV/KsZ6uLpgTGisNfc0gOLUefrZKYaUnmyVb+k1OI77++kL9udtcyAyZHNpY2dEN2rHmu/J7HtPH5tonsnRKFsAKFHVuL3ysza8kKvc7NV77Ap/R7Ra1ltbAIB6Mq/X1fxvOq4aATCnu5uvOu6LLJVqvadn4l9nnya2H2rEKqHPCUhn2owCjeKUj3sT9lrnRJZaBVBv5YlpmnKh0vDH92sjKb3u+6zVhwSWFGU7ta8Ilq1r/fSaxFKbAHY7zZ0ZSAB4AI4j4V8AfwAUuhmb+AdPq8p9jHCpvQAAAABJRU5ErkJggg==");
+  background-position: 1px center;
+  background-repeat: no-repeat;
+}
+
+.custom-tweet-button:hover {
+  border-color: #BBB;
+  background-color: #F8F8F8;
+  /*background-image: linear-gradient(to top, #F8F8F8, #D9D9D9), url("imgs/twitter.png");*/
+  box-shadow: none;
+}
+
+kbd,
+code {
+  display: inline-block;
+  margin: 2px;
+  padding: 0px 5px;
+  border: 1px solid #ddd;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+kbd {
+  border-color: #ddd #bbb #bbb #ddd;
+  border-bottom-width: 2px;
+  border-radius: 3px;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+a[href*="wikipedia.org"]:after,
+a[href*="vk.com"]:after,
+a[href^="http"]:after {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-color: transparent;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAMAAAC67D+PAAAAFVBMVEVmmcwzmcyZzP8AZswAZv////////9E6giVAAAAB3RSTlP///////8AGksDRgAAADhJREFUGFcly0ESAEAEA0Ei6/9P3sEcVB8kmrwFyni0bOeyyDpy9JTLEaOhQq7Ongf5FeMhHS/4AVnsAZubxDVmAAAAAElFTkSuQmCC");
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+/* Wikipedia */
+a[href*="wikipedia.org"]:after {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAACXBIWXMAAARNAAAETQHvMrKRAAAABGdBTUEAALGOfPtRkwAAACBjSFJNAAB6JQAAgIMAAPn/AACA6QAAdTAAAOpgAAA6mAAAF2+SX8VGAAACm0lEQVR42mL4jwo+ffqEzP379y+aAoAAYmKAgTt37ujq6p48eRLIvnfv3vHjx8+fP798+fK0tLSzZ8/ClQEEECNQE5D6+vVrW1sbUB1QxcuXL2tra4GCysrKoqKihw4dArITEhIcHByADIAAYgFioIrfv3//+PHD1tZ27dq127dv//fvn7u7OwcHx58/f0xMTB4/ftzS0gJU4OHhARBAIBuePHny/PlzMzMzZmZmBQUFTU3N4uJiVlbWz58/A6WAJFD/zJkzubm59+3bBxBAzPn5+UxMTN++fePj4/v161dYWFhNTQ1QEdC7nZ2d79+/V1RUBHJ5eXnv3r0rIiICEEDMQD+tW7fO2NjY399fWlqai4sLaDU7Ozs/P7+8vLy4uDjQzcCg+/79+/379589ewYQQCxA64BmA936+vXr69evA21TU1P7DAZAtrCwMDAk/oDBazAACCDG27dvA0WBfmBhYfn58ydQAhLEnJycQC4wiE6dOmVlZQVUCmQAbQYIIFA8AMMbGEpAaaDVV65cAcpJSUkBuUBTLl68KCcnB2QDnQQMK6BzAAIIpOH06dPAEAA6HSjd2tq6ZMkSoG1A7woKCnp7e+vp6QGtffv2LTBggGyAAGIE6j527BjQLmDcsbGxAUWBIsDgAgYo0BSgR4FB+fHjR6ACoA9v3LgBEEBMQEVAS4ABBfQl0KRHjx4BXQJ0FdB2oKlAEmgPUP/ly5ebm5uVlJQAAggU03Z2dkAHAOMbKH3p0qWHDx9KSkoCw/TVq1dAs798+QK0Bxg/paWlQMUAAQRNSxCf7NmzBygNtAeoE2ghMKyADgPak5KSAvQbMJSBygACCKEBCIDSR48eBQYU0JI3b94AU4eGhkZERIShoSFcDUCAAQDeX8MsibcVMwAAAABJRU5ErkJggg==");
+}
+
+/* vk.com */
+a[href*="vk.com"]:after {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDowQ0FEMkVGMzQ5RUQxMUUzOTkwMjg0QjUyNDI0QTZERCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDowQ0FEMkVGNDQ5RUQxMUUzOTkwMjg0QjUyNDI0QTZERCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjBDQUQyRUYxNDlFRDExRTM5OTAyODRCNTI0MjRBNkREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjBDQUQyRUYyNDlFRDExRTM5OTAyODRCNTI0MjRBNkREIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+l6z1qAAAAF1QTFRFYYKm////cI6v/P390tvm0dvlcI6uq7zQgpy49Pf5wc7ctcXV19/ovMrZ+fr8+Pr72uLq9vj64efu+vv8co+vlqzEjaW/ztjj/f7+lKvDhZ66eZW06u7z4ujv1N3nPRWw9QAAAFVJREFUeNqMj0cOgDAQA72bQif0Dv9/Jtc4EhK+zUjeAquIohbESPE7ItIPB4nskY4EFllJXG3ISVSlKZQqqGWmoY3ZTlo73vvfI5NvPJyPeXKvAAMAANYCCUrJ0C4AAAAASUVORK5CYII=");
+}
+
+@media screen and (max-width: 800px) {
+  html {
+    padding: 1px;
+  }
+
+  #bigtable,
+  #bigtable > div {
+    display: block;
+  }
+
+  #left {
+    width: auto;
+  }
+
+  div.menu > a:link {
+    padding: 2px;
+    margin: 0;
+    margin-left: 1em;
+    display: inline-block;
+  }
+
+  .ads-container {
+    display: none;
+  }
+
+  body {
+    padding-bottom: 100px;
+  }
+
+  .textarea textarea {
+    min-width: 200px;
+  }
+  /*
+  .menu b::after {
+    content: ":";
+  }*/
+}
+
+@media screen and (max-width: 480px) {
+  table.main > tbody > tr > td.tdmatrix,
+  table.main > tbody > tr > td {
+    width: auto;
+    display: inline-block;
+  }
+}
+
+/* new */
+ 
+.arrow-with-label {
+  display: inline-block;
+  vertical-align: 0;
+  padding-left: 16px;
+  position: relative;
+}
+
+.arrow-with-label[data-type="divide"] {
+  padding-left: 0;
+}
+
+.arrow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 0;
+  width: 12px;
+}
+
+.arrow-head-top,
+.arrow-head-bottom {
+  position: absolute;
+  left: -1.5px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 4px 8px 4px 0;
+  border-color: transparent black transparent transparent;
+}
+
+.arrow-head-top {
+  top: -3.5px;
+}
+
+.arrow-head-bottom {
+  bottom: -3.5px;
+}
+
+.arrow-line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  border: 1px solid black;
+  border-left: 0;
+}
+
+.footer-table {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+}
+.footer-table > div {
+  display: table-cell;
+  width: 25%;
+  text-align: left;
+}
+.footer-table > div  + div {
+  display: table-cell;
+  width: 50%;
+  text-align: center;
+}
+.footer-table > div  + div + div {
+  display: table-cell;
+  width: 25%;
+  text-align: right;
+}
+
+.input-example-code {
+  padding: 0.809em;
+}
+
+.results-container {
+  will-change: transform;
+}
+
+.pivot {
+  font-weight: bold;
+  border: thin solid;
+  border-radius: 50%;
+}
+
+.relative {
+  position: relative;
+}
+.question-icon {
+  position: absolute;
+  top: -1em;
+  text-align: center;
+  width: 1em;
+  margin-left: -0.5em;
+  left: 50%;
+  display: inline-block;
+  background-color: #BCDBEA;
+  border-radius: 50%;
+  font-size: 75%;
+}
+
+[hidden] {
+  display: none;
+}
+
+.highlight {
+  background-color: antiquewhite;
+}
+.focusable {
+  cursor: pointer;
+}
+.tooltip-dialog {
+  margin: 0;
+  padding: 0.25em;
+  z-index: 1;
+  border-radius: 4px;
+  pointer-events: none;
+  max-width: 18em;/*?*/
+  margin: 0.25em;
+}
+
+.tooltip-dialog,
+.tooltip-arrow {
+  /*background: white;*/
+  background: #fbfbfb;
+  border: 1px solid silver;
+  /*box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.275);*/
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.math mtable.z {
+  vertical-align: top;
+}
+mtable.z > mtr > mtd {
+  text-align: left;
+}
+mtable.z > mtr > mtd {
+  padding-bottom: 0.5em;
+}
+mtable.z > mtr > mtd:first-of-type {
+  border-right: 2px solid #cb8087;
+}
+mtable.Sarrus > mtr > mtd:nth-child(4),
+mtable.Sarrus > mtr > mtd:nth-child(5) {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+input.matrix-table-input::-webkit-input-placeholder {
+   color: silver;
+   opacity: 1;
+}
+input.matrix-table-input:-moz-placeholder {
+   color: silver;
+   opacity: 1;
+}
+input.matrix-table-input::-moz-placeholder {
+   color: silver;
+   opacity: 1;
+}
+input.matrix-table-input:-ms-input-placeholder {
+   color: silver;
+   opacity: 1;
+}
+
+input.matrix-table-input:focus::-webkit-input-placeholder {
+   color: transparent;
+}
+input.matrix-table-input:focus:-moz-placeholder {
+   color: transparent;
+}
+input.matrix-table-input:focus::-moz-placeholder {
+   color: transparent;
+}
+input.matrix-table-input:focus:-ms-input-placeholder {
+   color: transparent;
+}
+
+input.matrix-table-input.far {
+  opacity: 0.3333333333333333;
+}
+input.matrix-table-input.far:focus,
+input.matrix-table-input.far:hover {
+  opacity: 1;
+}
+
+#advices {
+  border-top: thin solid silver;
+  padding: 1em;
+  margin-top: 1em;
+}
+
+#examples > details > ul > li > a {
+  display: inline-block;
+}
+
+.math menclose,
+.math mfenced,
+.math mfrac,
+.math mi,
+.math mn,
+.math mo,
+.math mrow,
+.math msqrt,
+.math msub,
+.math msup,
+.math munder {
+  display: inline-block;
+  vertical-align: baseline;
+}
+
+.math mfrac {
+  vertical-align: -50%;
+  text-align: center;
+  font-size: smaller;
+}
+
+.math mfrac > * {
+  display: block;
+  border-bottom: 1px solid;
+}
+
+.math mfrac > * + * {
+  display: inline-block;
+  border-bottom: none;
+  vertical-align: top;
+}
+
+.math mfenced {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  position: relative;
+}
+
+.math mfenced:before,
+.math mfenced:after {
+  border: 2px solid;
+  border-radius: 50%;
+  border-top-width: 0;
+  border-bottom-width: 0;
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 21px;
+}
+
+.math mfenced:before {
+  left: 0;
+  content: "";
+  border-right-width: 0;
+}
+
+.math mfenced:after {
+  right: 0;
+  content: "";
+  border-left-width: 0;
+}
+
+/* to fix the :hover issue */
+.math mfenced[open="("]:before {
+  clip: rect(auto 9px auto auto);
+}
+.math mfenced[close=")"]:after {
+  clip: rect(auto auto auto 14px);
+}
+
+.math mfenced[open="|"]:before,
+.math mfenced[close="|"]:after {
+  content: "";
+  border-radius: 0;
+  width: 0;
+  border-width: 1px;
+}
+
+.math mfenced[open="|"][close="|"] {
+  padding-left: 0.1em;
+  padding-right: 0.1em;
+}
+
+.math mfenced[open="|"]:before {
+  border-left: none;
+}
+
+.math mfenced[close="|"]:after {
+  border-right: none;
+}
+
+.math mfenced[open="{"]:before,
+.math mfenced[close=" "]:after {
+  content: "";
+  border-radius: 0;
+  width: 0;
+  border-width: 0;
+}
+
+.math mtable {
+  display: inline-table;
+  vertical-align: middle;
+  border-collapse: separate;
+}
+
+.math mtr {
+  display: table-row;
+}
+
+.math mtd {
+  display: table-cell;
+  text-align: center;
+  padding-left: 0.4em;
+  padding-right: 0.4em;
+}
+
+.math mtable[columnalign="right"] > mtr > mtd {
+  text-align: right;
+}
+
+/* (!) CSS 3 */
+.math mtable[columnlines$="solid"] > mtr > mtd:last-child {
+  border-left: 1px solid;
+}
+
+/* TODO: fix */
+
+.math mtable[columnlines^="solid"] > mtr > mtd:first-child + mtd {
+  border-left: 1px solid;
+}
+
+.math mtable[columnlines^="none solid"] > mtr > mtd:first-child + mtd + mtd {
+  border-left: 1px solid;
+}
+
+.math mtable[columnlines^="none none solid"] > mtr > mtd:first-child + mtd + mtd + mtd {
+  border-left: 1px solid;
+}
+
+.math mtable[columnlines^="none none none solid"] > mtr > mtd:first-child + mtd + mtd + mtd + mtd {
+  border-left: 1px solid;
+}
+
+.math mi {
+  font-style: italic;
+}
+
+.math mo {
+  padding-left: 0.15em;
+  padding-right: 0.15em;
+}
+
+.math msub,
+.math msup {
+  white-space: nowrap;
+}
+
+.math msub > *,
+.math msup > * {
+  white-space: normal;
+}
+
+.math msub > * + *,
+.math msup > * + * {
+  padding-left: 0.2em;
+  font-size: smaller;
+}
+
+.math msup > *:first-child {
+  margin-top: 0.25em;
+}
+
+.math msup > * + * {
+  vertical-align: top;
+}
+
+.math msub > *:first-child {
+  margin-bottom: 0.25em;
+}
+
+.math msub > * + * {
+  vertical-align: bottom;
+}
+
+/* Thanks to http://www.w3.org/TR/mathml-for-css/ */
+
+.math msqrt > mrow {
+  border-top: 1px solid;
+}
+
+.math msqrt:before {
+  display: inline-block;
+  content: "\221A";
+}
+
+.math mfenced[open="{"] {
+  border: none;
+  padding: 6px 0px 6px 12px;
+}
+
+.math mfenced[open="{"]:before {
+  border-left: 2px solid;
+  border-top-left-radius: 100% 16px;
+  content: "";
+  position: absolute;
+  top: 3px;
+  bottom: auto;
+  height: 25%;
+  width: 8px;
+  left: 5px;
+}
+.math mfenced[open="{"]:after {
+  border-left: 2px solid;
+  border-bottom-left-radius: 100% 16px;
+  content: "";
+  position: absolute;
+  bottom: 3px;
+  top: auto;
+  height: 25%;
+  width: 8px;
+  left: 5px;
+}
+.math mfenced[open="{"] > mtable:before {
+  border-right: 2px solid;
+  border-bottom: 2px solid transparent;
+  border-bottom-right-radius: 100% 16px;
+  content: "";
+  position: absolute;
+  top: 25%;
+  bottom: auto;
+  height: 25%;
+  padding-bottom: 4px;
+  width: 12px;
+  left: -7px;
+}
+.math mfenced[open="{"] > mtable:after {
+  border-right: 2px solid;
+  border-top: 2px solid transparent;
+  border-top-right-radius: 100% 16px;
+  content: "";
+  position: absolute;
+  top: auto;
+  bottom: 25%;
+  height: 25%;
+  padding-top: 4px;
+  width: 12px;
+  left: -7px;
+}
+
+.math mtable.has-menclose > mtr > mtd {
+  padding-left: 0;
+  padding-right: 0;
+  position: relative;
+}
+
+.math mtd > menclose {
+  padding-left: 0.4em;
+  padding-right: 0.4em;
+  display: block;
+}
+
+.math menclose[notation*="verticalstrike"]:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  border-right: 1px solid;
+}
+.math menclose[notation*="horizontalstrike"]:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  border-bottom: 1px solid;
+}
+
+/* new */
+.math munder {
+  display: inline-table;
+  text-align: center;
+  /* !!! */
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+.math munder > mrow {
+  display: table-row;
+}
+
+
+details > summary::-webkit-details-marker {
+  display:none;
+}
+
+details {
+  display: block;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+
+details > * {
+  display: none;
+}
+
+details > *.summary {
+  display: block;
+}
+
+details[open] > * {
+  display: block;
+}
+
+details > summary:hover,
+details > summary:focus {
+  text-shadow: 0 0 8px white;
+  background: #ddd;
+}
+
+details > summary:focus {
+  box-shadow: 0 0 3px 3px #80B4F4;
+}
+
+details > summary:before {
+  content: "\25BA";
+  width: 20px;
+  display: inline-block;
+  text-align: center;
+  width: 24px;
+  color: black;
+}
+
+details[open] > summary:before {
+  content: "\25BC";
+  width: 24px;
+  text-align: center;
+}
+
+details > summary {
+  cursor: pointer;
+  display: block;
+  margin-bottom: 3px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.standard-dialog {
+  z-index: 2;/* !? */
+}
+
+.standard-dialog > form > .close {
+  position: absolute;
+  right: 0.3em;
+  top: 0.3em;
+  font-weight: bold;
+  width: 1.2em;
+  height: 1.2em;
+  display: block;
+  text-align: center;
+  line-height: 1.2em;
+  cursor: pointer;
+  padding: 0;
+  box-shadow: none;
+  border: none;
+  background: transparent;
+}
+
+.standard-dialog::backdrop {
+  display: none;
+}
+
+.backdrop {
+  position: fixed;
+  background-color: rgba(0,0,0,0.1);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.standard-dialog {
+  position: absolute;
+  width: auto;
+  height: auto;
+  padding: 1em;
+  left: 0;
+  right: auto;
+  margin: 0;
+  max-width: 20em;
+
+  color: black;
+  background-color: white;
+  border: 1px solid rgba(0,0,0,.2);
+  border-radius: 4px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+ 
+.standard-dialog > form {
+  padding: 0;
+  margin: 0;
+}
+.standard-dialog > form > .content {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+.standard-dialog > form > .content > input {
+  width: 100%;
+}
+.standard-dialog > form > .buttons {
+  text-align: center;
+}
+.standard-dialog > form > .buttons > div {
+  display: inline-block;
+  width: 50%;
+  box-sizing: border-box;
+  padding-left: 0;
+  padding-right: 1px;
+}
+.standard-dialog > form > .buttons > div + div {
+  padding-left: 1px;
+  padding-right: 0;
+}
+.standard-dialog > form > .buttons > div > button {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  display: inline-block;
+}
+
+@media screen and (max-width: 22em),
+@media screen and (max-height: 200px) {
+  .standard-dialog {
+    border-radius: 0;
+  }
+}
+
+.a-input {
+  display: inline-block;
+  position: relative;
+  background: white;
+}
+
+.a-input > div,
+.a-input > input,
+.a-input > textarea{
+  letter-spacing: normal;
+  word-spacing: normal;
+  white-space: pre;
+  word-wrap: normal;
+  -o-tab-size: 4;
+  -moz-tab-size: 4;
+  tab-size: 4;
+  font-family: monospace;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.a-input > div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+
+
+.tooltip-arrow-wrapper {
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 100%;
+  height: 1em;
+}
+
+.tooltip-arrow {
+  position: absolute;
+  left: 0.5em;
+  bottom: -0.85em;
+  width: 1em;
+  height: 1em;
+  transform: rotate(45deg);
+}
+
+.exclamation {
+  display: inline-block;
+  background: orange;
+  color: white;
+  font-weight: bold;
+  padding: 0 0.5em 0 0.5em;
+  border-radius: 4px;
+}
