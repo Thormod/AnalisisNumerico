@@ -6,21 +6,15 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="description" content="">
       <meta name="author" content="">
-      <title>NAnalizer v.1.9</title>
-      <!-- Bootstrap Core CSS -->
-      <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-      <!-- MetisMenu CSS -->
-      <link href="../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
-      <!-- Timeline CSS -->
-      <link href="../dist/css/timeline.css" rel="stylesheet">
+      <title>NAnalizer v.2 - Ecuaciones de una variable</title>
+
       <!-- Custom CSS -->
       <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
-      <!-- Matrix custom CSS -->
-      <link href="../dist/css/matcss.css" rel="stylesheet">
-      <!-- Morris Charts CSS -->
-      <link href="../bower_components/morrisjs/morris.css" rel="stylesheet">
-      <!-- Custom Fonts -->
-      <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+      <!-- Bootstrap latest CSS (Online catch) -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+      <!-- Custom fonts (online catch) -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
       <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
       <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
       <!--[if lt IE 9]>
@@ -39,7 +33,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html">NAnalizer v.1.9</a>
+            <a class="navbar-brand" href="index.html">NAnalizer v.2 - Ecuaciones de una variable</a>
          </div>
          <!-- /.navbar-header -->
 
@@ -56,7 +50,9 @@
                      <a href="#newton"><i class="fa fa-envelope fa-fw"></i> Newton</a>
                      <a href="#secant"><i class="fa fa-search fa-fw"></i> Secant</a>
                      <a href="#multiple"><i class="fa fa-users fa-fw"></i> Multiple Roots</a>
-                     <a href="matcalculator.html"><i class="fa fa-calculator fa-fw"></i> Matrix Calculator</a>
+                     <hr>
+                     Other resources
+                     <a href="#charts"><i class="fa fa-superscript fa-fw"></i> Plotter</a>
                   </li>
                </ul>
             </div>
@@ -73,9 +69,7 @@
       </div>
       <!-- /.row -->
       <div class="row">
-         <!-- /.col-lg-8 -->
-         <div class="col-lg-4">
-            <div class="panel panel-default">
+      <div class="panel panel-default">
                <div class="panel-heading">
                   <i class="fa fa-calculator fa-fw"></i> Equation
                </div>
@@ -85,9 +79,10 @@
                      <textarea class="form-control" rows="3" id="input"></textarea>
                      <!--<input type="text" name="" id="input" value="x-3">-->
                      <span>Variables:</span>
-                     <input class="form-control" id="varibles" value='{"x":2, "y":0}'>
+                     <input class="form-control" id="varibles" value='{"x":0, "y":0}'>
                   </div>
                   <input type="button" class="btn btn-primary btn-lg btn-block" name="" id="but" value="Calculate">
+                  <a href="" class="pull-right" data-toggle="modal" data-target="#equation-modal">Help <i class="fa fa-question-circle"></i></a>
                </div>
                <!-- /.panel-body -->
             </div>
@@ -104,23 +99,7 @@
                <!-- /.panel-body -->
             </div>
             <!-- /.panel -->
-         </div>
-         <!-- /.row -->
-         <div class="col-lg-8">
-            <div class="panel panel-default">
-               <div class="panel-heading">
-                  <i class="fa fa-bar-chart-o fa-fw"></i> Chart (By FooPlot):
-               </div>
-               <!-- /.panel-heading -->
-               <div class="panel-body">
-                  <div id="myPlot" style="width:650px;height:330px;"></div>
-               </div>
-               <!-- /.panel-body -->
-            </div>
-            <!-- /.panel -->
-         </div>
-      </div>
-      <!-- /#page-wrapper -->
+
       <hr>
       <div id="incremental">
          <h1 class="page-header"> Incremental Search</h1>
@@ -135,12 +114,15 @@
                <!-- /.panel-heading -->
                <div class="panel-body">
                   <div class="list-group">
+                     <span>X:</span>
+                     <input class="form-control" id="x" value=''>
                      <span>Delta:</span>
                      <input class="form-control" id="delta" value='0.1'>
                      <span>Iterations:</span>
                      <input class="form-control" id="iteration" value='100'>
                   </div>
                   <input type="button" class="btn btn-primary btn-lg btn-block" name="" id="method1" value="Calculate">
+                  <a href="" class="pull-right" data-toggle="modal" data-target="#incremental-modal">Help <i class="fa fa-question-circle"></i></a>
                </div>
                <!-- /.panel-body -->
             </div>
@@ -207,6 +189,7 @@
                      <input class="form-control" id="iteration_b" value='100'>
                   </div>
                   <input type="button" class="btn btn-primary btn-lg btn-block" name="" id="method2" value="Calculate">
+                  <a href="" class="pull-right" data-toggle="modal" data-target="#bisection-modal">Help <i class="fa fa-question-circle"></i></a>
                </div>
                <!-- /.panel-body -->
             </div>
@@ -276,6 +259,7 @@
                      <input class="form-control" id="iteration_f" value='100'>
                   </div>
                   <input type="button" class="btn btn-primary btn-lg btn-block" name="" id="method3" value="Calculate">
+                  <a href="" class="pull-right" data-toggle="modal" data-target="#false-rule-modal">Help <i class="fa fa-question-circle"></i></a>
                </div>
                <!-- /.panel-body -->
             </div>
@@ -345,6 +329,7 @@
                      <input class="form-control" id="iteration_fp" value='100'>
                   </div>
                   <input type="button" class="btn btn-primary btn-lg btn-block" name="" id="method4" value="Calculate">
+                  <a href="" class="pull-right" data-toggle="modal" data-target="#fixed-point-modal">Help <i class="fa fa-question-circle"></i></a>
                </div>
                <!-- /.panel-body -->
             </div>
@@ -412,6 +397,7 @@
                      <input class="form-control" id="iteration_n" value='100'>
                   </div>
                   <input type="button" class="btn btn-primary btn-lg btn-block" name="" id="method5" value="Calculate">
+                  <a href="" class="pull-right" data-toggle="modal" data-target="#newton-modal">Help <i class="fa fa-question-circle"></i></a>
                </div>
                <!-- /.panel-body -->
             </div>
@@ -480,6 +466,7 @@
                      <input class="form-control" id="iteration_s" value='100'>
                   </div>
                   <input type="button" class="btn btn-primary btn-lg btn-block" name="" id="method6" value="Calculate">
+                  <a href="" class="pull-right" data-toggle="modal" data-target="#secant-modal">Help <i class="fa fa-question-circle"></i></a>
                </div>
                <!-- /.panel-body -->
             </div>
@@ -550,6 +537,7 @@
                      <input class="form-control" id="iteration_m" value='100'>
                   </div>
                   <input type="button" class="btn btn-primary btn-lg btn-block" name="" id="method7" value="Calculate">
+                  <a href="" class="pull-right" data-toggle="modal" data-target="#multiple-roots-modal">Help <i class="fa fa-question-circle"></i></a>
                </div>
                <!-- /.panel-body -->
             </div>
@@ -596,6 +584,161 @@
       </div>
       <!-- /#wrapper -->
 
+      <!-- Modals -->
+
+      <!-- Equation modal -->
+      <div class="modal fade" id="equation-modal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">Equation</h4>
+            </div>
+            <div class="modal-body">
+              <p></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+      <!-- /Equation modal -->
+
+      <!-- Incremental Search modal -->
+      <div class="modal fade" id="incremental-modal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">Incremental Search - HELP</h4>
+            </div>
+            <div class="modal-body">
+              <p></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+      <!-- /incremental Search modal -->
+
+      <!-- Bisection modal -->
+      <div class="modal fade" id="bisection-modal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">Bisection - HELP</h4>
+            </div>
+            <div class="modal-body">
+              <p></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+      <!-- /Bisection modal -->
+
+      <!-- False Rule modal -->
+      <div class="modal fade" id="false-rule-modal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">False Rule - HELP</h4>
+            </div>
+            <div class="modal-body">
+              <p></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+      <!-- /False Rule modal -->
+
+      <!-- Fixed Point modal -->
+      <div class="modal fade" id="fixed-point-modal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">Fixed Point - HELP</h4>
+            </div>
+            <div class="modal-body">
+              <p></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+      <!-- /Fixed Point modal -->
+
+      <!-- Newton modal -->
+      <div class="modal fade" id="newton-modal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">Newton - HELP</h4>
+            </div>
+            <div class="modal-body">
+              <p></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+      <!-- /Newton modal -->
+
+      <!-- Secant modal -->
+      <div class="modal fade" id="secant-modal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">Secant - HELP</h4>
+            </div>
+            <div class="modal-body">
+              <p></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+      <!-- /Secant modal -->
+
+      <!-- Multiple Roots modal -->
+      <div class="modal fade" id="multiple-roots-modal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">Multiple Roots - HELP</h4>
+            </div>
+            <div class="modal-body">
+              <p></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+      <!-- /Multiple Roots modal -->
+
+      <!-- /Modals -->
 
       <!-- jQuery -->
       <script src="../bower_components/jquery/dist/jquery.min.js"></script>

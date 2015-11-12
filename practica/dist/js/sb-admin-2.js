@@ -2,10 +2,11 @@ $(document).ready(function() {
 
     $("#but").on("click", function(event) {
         var equation = $("#input").val();
-        myPlot = new Fooplot(document.getElementById('myPlot'));
-        myPlot.addPlot(equation, FOOPLOT_TYPE_FUNCTION);
+        
+        //myPlot = new Fooplot(document.getElementById('myPlot'));
+        //myPlot.addPlot(equation, FOOPLOT_TYPE_FUNCTION);
         //myPlot.addPlot('theta',FOOPLOT_TYPE_POLAR,{'color':'#ff0000'}); 
-        myPlot.reDraw();
+        //myPlot.reDraw();
 
         test();
         document.getElementById("input").addEventListener("keyup", test);
@@ -19,7 +20,14 @@ $(document).ready(function() {
     $("#method1").on("click", function(event) {
 
         /**************     Variables declaration    *****************************/
+        
+        //We use the scope to copy the variable type
+        var scope = JSON.parse(document.getElementById("varibles").value);
+        scope.x = 0;
+
         //Inputs
+        var x0 = scope.x;
+        x0 += parseFloat($("#x").val());
         var delta = $("#delta").val();
         var iterations = $("#iteration").val();
         var sol = document.getElementById("incremental_solution");
@@ -83,9 +91,9 @@ $(document).ready(function() {
                     //Genearate the table
                     generateTable(incremental_table_x, incremental_table_y, $('#incremental_table'), "incremental", delta.length-2);
                     $("#incremental_solution").text("Root between x0 = " 
-                        + parseFloat(x0).toFixed(delta.length - 2) + 
+                        + parseFloat(x0) + 
                         " and x1 = " 
-                        + parseFloat(x1).toFixed(delta.length -2) 
+                        + parseFloat(x1) 
                     + ".");
 
                 } else {
@@ -664,7 +672,7 @@ function generateTable(mat1, mat2, table, method, tolerance) {
     if (method == "incremental") {
         for (var i = 0; i < mat1.length; i++) {
             $row = $row + '<tr><td>' + i 
-                        + '</td><td>' + parseFloat(mat1[i]).toFixed(tolerance) 
+                        + '</td><td>' + parseFloat(mat1[i])
                         + '</td><td>' + parseFloat(mat2[i]).toExponential(tolerance) 
                         +'</tr>';
         };
@@ -758,9 +766,6 @@ function generateTable(mat1, mat2, table, method, tolerance) {
                 "y": 0
             }, "multiple2");
 
-            if(tolerance > 2){
-                error = trimByWord(error);
-            }
             $row = $row + '<tr><td>' 
                     + i + '</td><td>' 
                     + mat1[i].toFixed(tolerance) + '</td><td>' 
@@ -844,6 +849,7 @@ function test() {
         errorHandler(err);
     }
     var area = document.getElementById("area");
+    area.innerHTML = "";
 
     while (area.firstChild) {
         area.removeChild(area.firstChild);
