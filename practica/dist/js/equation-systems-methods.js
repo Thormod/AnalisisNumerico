@@ -56,8 +56,46 @@ function mat_out(f){
     };
 }
 
+function array_initialization(size){
+    var x = new Array();
+    for (var i = 0; i < size; i++) {
+        x[i]=0;
+    };
+    return x;
+}
+function regressive_replacement(arr){
+    var rows = $("#rows").val();
 
-function regressive_replacement(){
+    var f = new Array();
+    var x = new Array();
+    var sum = 0;
+
+    x = array_initialization(rows);
+    f = arr;
+    console.log(x);
+    
+    x[rows-parseFloat(1)] = f[rows][parseFloat(rows)-1]/f[parseFloat(rows)-1][parseFloat(rows)-1];
+
+    console.log(f[parseFloat(rows)-1][parseFloat(rows)-1] +" "+ f[rows][parseFloat(rows)-1]);
+    for(var i = parseFloat(rows)-parseFloat(2); i >= 0; i--){
+        sum = 0;
+        for (var p = i+1; p < rows; p++) {
+            sum += parseFloat(f[p][i])*parseFloat(x[p]);
+        };
+        x[i] =  (parseFloat(f[p][i])-parseFloat(sum))/parseFloat(f[i][i]);  
+    };
+
+    $("#area").empty();
+
+    var equ = "[ ";
+    for(var i = 0; i < rows; i++){
+        equ += " x"+i+": "+x[i];
+        if(i != rows-parseFloat(1)){
+            equ +=", <br>";
+        }
+    }
+    equ += " ]";
+    $("#area").append(equ);
 
 }
 
@@ -73,13 +111,11 @@ function simple_gauss(){
         for (var i = k+1; i < rows; i++) {
             multiplier = parseFloat(f[k][i])/parseFloat(f[k][k]);   
             for (var j = k; j <= rows; j++) {
-                console.log('k '+k+' i '+i +' j '+ j);
                 f[j][i] = parseFloat(f[j][i]) - parseFloat(multiplier)*parseFloat(f[j][k]);
-                console.log('mult '+multiplier);
-                console.log(f[i][j]);
             };
         };
     };
     
     mat_out(f);
+    regressive_replacement(f);
 }
