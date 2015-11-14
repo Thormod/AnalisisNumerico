@@ -1,12 +1,14 @@
 $(document).ready(function() {
+    /*
+    * nextInput1 ---> equations
+    * nextInput2 ---> newton
+    * nextInput3 ---> lagrage
+    */
 	var nextInput1 = 1;
     var nextInput2 = 1;
+    var nextInput3 = 1;
 
     $("#equations-add-point").on("click", function(event) {
-    	//var equ = '';
-    	//equ += '<div class="row" id=id'+nextInput1+'><div class="col-lg-6"><span>X:</span><input class="form-control" id="x'+nextInput1+'"></div><div class="col-lg-6"><span>Y:</span><input class="form-control" id="y'+nextInput1+'"></div></div>';
-
-    	//$("#control-points-equations").append(equ);
     	nextInput1 = add_point(nextInput1, "equations-control-points", "e");
     });
 
@@ -14,14 +16,20 @@ $(document).ready(function() {
         nextInput2 = add_point(nextInput2, "newton-control-points", "n");
     });
 
+     $("#lagrange-add-point").on("click", function(event) {
+        nextInput3 = add_point(nextInput3, "lagrange-control-points", "l");
+    });
+
     $("#equations-erase-point").on("click", function(event){
-        //nextInput1--;
-        //$("#id"+nextInput1).remove();
         nextInput1 = erase_point(nextInput1, "e");
     });
     
     $("#newton-erase-point").on("click", function(event){
         nextInput2 = erase_point(nextInput2, "n");
+    });
+
+    $("#lagrange-erase-point").on("click", function(event){
+        nextInput3 = erase_point(nextInput3, "l");
     });
 
     $("#method1").on("click", function(event) {
@@ -48,6 +56,19 @@ $(document).ready(function() {
         y = divide_array_y(arr);
 
         vandermonde_matrix(x,y,"newton");
+    });
+
+     $("#method3").on("click", function(event) {
+        var arr = new Array();
+        var x = new Array();
+        var y = new Array();
+
+        arr = fill_array("lagrange", nextInput2);
+
+        x = divide_array_x(arr);
+        y = divide_array_y(arr);
+
+        vandermonde_matrix(x,y,"lagrange");
     });
 
 });
@@ -206,6 +227,8 @@ function fill_array(method, lenght){
 		id = "equations-control-points";
 	}else if(method == "newton"){
         id = "newton-control-points";
+    }else if(method == "lagrange"){
+        id = "lagrange-control-points"; 
     }
 
 	$("#"+id+" input").each(function(){
