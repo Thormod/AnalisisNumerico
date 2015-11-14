@@ -1,19 +1,29 @@
 $(document).ready(function() {
 	var nextInput1 = 1;
+    var nextInput2 = 1;
 
-    $("#add-point").on("click", function(event) {
-    	
-    	var equ = '';
-    	equ += '<div class="row" id=id'+nextInput1+'><div class="col-lg-6"><span>X:</span><input class="form-control" id="x'+nextInput1+'"></div><div class="col-lg-6"><span>Y:</span><input class="form-control" id="y'+nextInput1+'"></div></div>';
+    $("#equations-add-point").on("click", function(event) {
+    	//var equ = '';
+    	//equ += '<div class="row" id=id'+nextInput1+'><div class="col-lg-6"><span>X:</span><input class="form-control" id="x'+nextInput1+'"></div><div class="col-lg-6"><span>Y:</span><input class="form-control" id="y'+nextInput1+'"></div></div>';
 
-    	$("#control-points-equations").append(equ);
-    	nextInput1++;
+    	//$("#control-points-equations").append(equ);
+    	nextInput1 = add_point(nextInput1, "equations-control-points", "e");
     });
 
-    $("#erase-point").on("click", function(event){
-        nextInput1--;
-        $("#id"+nextInput1).remove();
+    $("#newton-add-point").on("click", function(event){
+        nextInput2 = add_point(nextInput2, "newton-control-points", "n");
     });
+
+    $("#equations-erase-point").on("click", function(event){
+        //nextInput1--;
+        //$("#id"+nextInput1).remove();
+        nextInput1 = erase_point(nextInput1, "e");
+    });
+    
+    $("#newton-erase-point").on("click", function(event){
+        nextInput2 = erase_point(nextInput2, "n");
+    });
+
     $("#method1").on("click", function(event) {
     	var arr = new Array();
     	var x = new Array();
@@ -24,11 +34,42 @@ $(document).ready(function() {
     	x = divide_array_x(arr);
     	y = divide_array_y(arr);
 
-    	vandermonde_matrix(x,y);
+    	vandermonde_matrix(x,y,"equations");
+    });
+
+    $("#method2").on("click", function(event) {
+        var arr = new Array();
+        var x = new Array();
+        var y = new Array();
+
+        arr = fill_array("newton", nextInput2);
+
+        x = divide_array_x(arr);
+        y = divide_array_y(arr);
+
+        vandermonde_matrix(x,y,"newton");
     });
 
 });
-/****************************************************************/
+/********************     Buttons functions   ***************************************/
+
+function add_point(nextInput, id, method){
+    var equ = '';
+    equ += '<div class="row" id='+method+'id'+nextInput+'><div class="col-lg-6"><span>X:</span><input class="form-control" id="'+method+'x'+nextInput+'"></div><div class="col-lg-6"><span>Y:</span><input class="form-control" id="'+method+'y'+nextInput+'"></div></div>';
+
+    $("#"+id).append(equ);
+    nextInput++;
+
+    return nextInput;
+}
+function erase_point(nextInput, method){
+    nextInput--;
+    $("#"+method+"id"+nextInput).remove();
+    return nextInput;
+}
+
+/************************************************************************************/
+
 function mat_imp(f){
     var equ = '';
     for (var i = 0; i < f.length; i++) {
@@ -60,7 +101,7 @@ function array_initialization(size){
     };
     return x;
 }
-function regressive_replacement(arr){
+function regressive_replacement(arr, method){
     var rows = arr.length-1;
 
     var f = new Array();
@@ -81,7 +122,7 @@ function regressive_replacement(arr){
         x[i] =  (parseFloat(f[p][i])-parseFloat(sum))/parseFloat(f[i][i]); 
     };
 
-    $("#equation-area").empty();
+    $("#"+method+"-area").empty();
 
     var equ = "[ ";
     for(var i = 0; i < rows; i++){
@@ -91,11 +132,11 @@ function regressive_replacement(arr){
         }
     }
     equ += " ]";
-    $("#equation-area").append(equ);
+    $("#"+method+"-area").append(equ);
 
 }
 
-function simple_gauss(size){
+function simple_gauss(size, method){
 
     var rows = parseFloat(size);
     var f = new Array();
@@ -113,12 +154,12 @@ function simple_gauss(size){
         };
     };
     
-    regressive_replacement(f);
+    regressive_replacement(f, method);
 }
 
 /****************************************************************/
-function mat_out(arr){
-	$("#mat").empty();
+function mat_out(arr, method){
+	$("#"+method+"-mat").empty();
 	
     var rows =arr.length;
     var equ = "";
@@ -133,7 +174,7 @@ function mat_out(arr){
             }
         };
        equ += '</div>';
-       $("#mat").append(equ);
+       $("#"+method+"-mat").append(equ);
     };
 }
 
@@ -159,19 +200,22 @@ function divide_array_y(arr){
 function fill_array(method, lenght){
 	var length = 0;
 	var id = "";
+
 	var arr = new Array();
 	if(method == "equation_systems"){
-		id = "control-points-equations";
-	}
+		id = "equations-control-points";
+	}else if(method == "newton"){
+        id = "newton-control-points";
+    }
+
 	$("#"+id+" input").each(function(){
-		arr[length] = $(this).val();
+        arr[length] = $(this).val();
 		length++;
 	})
-
 	return arr;
 }
 
-function vandermonde_matrix(x, y){
+function vandermonde_matrix(x, y, method){
 	var res = new Array();
 	var cont = 0;
 
@@ -188,8 +232,8 @@ function vandermonde_matrix(x, y){
 		res[i][res.length] = parseFloat(y[i]);
 	};
 
-    mat_out(res);
-    simple_gauss(res.length);
+    mat_out(res, method);
+    simple_gauss(res.length, method);
 }
 
 
