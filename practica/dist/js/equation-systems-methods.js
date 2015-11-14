@@ -72,11 +72,9 @@ function regressive_replacement(arr){
 
     x = array_initialization(rows);
     f = arr;
-    console.log(x);
     
     x[rows-parseFloat(1)] = f[rows][parseFloat(rows)-1]/f[parseFloat(rows)-1][parseFloat(rows)-1];
 
-    console.log(f[parseFloat(rows)-1][parseFloat(rows)-1] +" "+ f[rows][parseFloat(rows)-1]);
     for(var i = parseFloat(rows)-parseFloat(2); i >= 0; i--){
         sum = 0;
         for (var p = i+1; p < rows; p++) {
@@ -98,6 +96,16 @@ function regressive_replacement(arr){
     $("#area").append(equ);
 
 }
+function mat_imp(f){
+    var equ = '';
+    for (var i = 0; i < f.length; i++) {
+        for (var j = 0; j < f.length-1; j++) {
+            equ += f[i][j] + ' i ' + i + ' j ' + j + ' ';
+        };
+        console.log(equ);
+        equ = '';
+    };
+}
 
 function simple_gauss(){
     $("#mat").empty();
@@ -105,7 +113,7 @@ function simple_gauss(){
 	var f = new Array();
 	f = matrixFill();
 
-	var multiplier = 1;
+    var multiplier = 1;
 
     for (var k = 0; k < parseFloat(rows)-parseFloat(1); k++) {
         for (var i = k+1; i < rows; i++) {

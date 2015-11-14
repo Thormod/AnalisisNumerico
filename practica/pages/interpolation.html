@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <title>NAnalizer v.2 - Equations Systems</title>
+
+      <!-- Custom CSS -->
+      <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+      <!-- Bootstrap latest CSS (Online catch) -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+      <!-- Custom fonts (online catch) -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+         <style type="text/css" media="screen">
+      /* enable absolute positioning */
+        .inner-addon { 
+            position: relative; 
+            color: #fff;
+        }
+
+        /* style icon */
+        .inner-addon .glyphicon {
+         width: 60px;
+          position: absolute;
+          padding: 10px;
+          pointer-events: none;
+        }
+
+        /* align icon */
+        .left-addon .glyphicon  { left:  0px;}
+        .right-addon .glyphicon { right: 0px;}
+
+        /* add padding  */
+        .left-addon input  { padding-left:  30px; }
+        .right-addon input { padding-right: 30px; }
+   </style> 
+
+   </head>
+   <body>
+      <div id="wrapper">
+      <!-- Navigation -->
+      <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
+         <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">NAnalizer v.2 - Interpolation</a>
+         </div>
+         <!-- /.navbar-header -->
+
+         <!-- /.navbar-top-links -->
+         <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapse">
+               <ul class="nav" id="side-menu">
+                  <li>
+                     <a href="#equation"><i class="fa fa-bar-chart-o fa-fw"></i> Equation</a>
+                     <a href="#gauss-simple"><i class="fa fa-cloud-download fa-fw"></i> Equation Systems Based Method</a>
+                     
+                     <hr>
+                     Other resources
+                     <a href="one-variable-equation.html"><i class="fa fa-television fa-fw"></i> One variable equation</a>
+                     <a href="plotter.html" target="_blank"><i class="fa fa-line-chart fa-fw"></i> Plotter</a>
+                  </li>
+               </ul>
+            </div>
+            <!-- /.sidebar-collapse -->
+         </div>
+         <!-- /.navbar-static-side -->
+      </nav>
+      <div id="page-wrapper" style="margin-top: 20px;">
+      <div class="row" id="equation">
+         <div class="col-lg-12">
+            <h1 class="page-header">Equation Systems Based Method</h1>
+         </div>
+         <!-- /.col-lg-12 -->
+      </div>
+      <!-- /.row -->
+
+       <div class="row">
+         <!-- /.col-lg-8 -->
+         <div class="col-lg-4">
+            <div class="panel panel-default">
+               <div class="panel-heading">
+                  <i class="fa fa-code fa-fw"></i> Variables:
+               </div>
+               <!-- /.panel-heading -->
+               <div class="panel-body">
+                  <div class="list-group">
+                     <span>Points:</span>
+                     <div id="control-points-equations">
+                     <div class="row">
+                        <div class="col-lg-6">
+                           <span>X:</span>
+                           <input class="form-control" id="x0" value=''>
+                        </div>
+                        <div class="col-lg-6">
+                           <span>Y:</span>
+                           <input class="form-control" id="y0" value=''>
+                        </div>
+                     </div>
+                  </div>
+                  </div>
+                  <div class="inner-addon left-addon">
+                     <i class="glyphicon glyphicon-plus"></i>
+                     <input type="button" class="btn btn-primary btn-lg btn-block" value="Erase Point" name="" id="erase-point" />
+                     <input type="button" class="btn btn-primary btn-lg btn-block" value="Add More" name="" id="add-point" />
+                  </div><hr>
+                  <input type="button" class="btn btn-primary btn-lg btn-block" name="" id="method1" value="Calculate">
+                  <a href="" class="pull-right" data-toggle="modal" data-target="#equation-modal">Help <i class="fa fa-question-circle"></i></a>
+               </div>
+               <!-- /.panel-body -->
+                 <!-- /.panel -->
+            <div class="panel panel-default">
+               <div class="panel-heading">
+                  <i class="fa fa-plus fa-fw"></i> Solution:
+               </div>
+               <!-- /.panel-heading -->
+               <div class="panel-body">
+                  <section id="equation-area"></section>
+               </div>
+               <!-- /.panel-body -->
+            </div>
+
+            </div>
+            <!-- /.panel -->
+            
+         </div>
+         <!-- /.row -->
+               <div class="col-lg-8">
+            <div class="panel panel-default">
+               <div class="panel-heading">
+                  <i class="fa fa-table fa-fw"></i> Result table:
+               </div>
+               <!-- /.panel-heading -->
+               <div class="panel-body" id="mat" style=" overflow:auto;">
+
+               </div>
+            </div>
+         </div>
+
+      </div>
+   </div>
+
+ <!-- Modals -->
+
+      <!-- Equation modal -->
+      <div class="modal fade" id="equation-modal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">Equation Systems Based Method</h4>
+            </div>
+            <div class="modal-body">
+              <p></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+      <!-- /Equation modal -->
+
+
+<!-- /Modals -->
+
+ <!-- jQuery -->
+      <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+      <!-- Bootstrap Core JavaScript -->
+      <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+      <!-- Fooplot JavaScript -->
+      <script src="../js/fooplot.js"></script>
+      <!-- Math.min JavaScript -->
+      <script src="../js/math.min.js"></script>
+      <!-- Custom JavaScript -->
+      <script src="../dist/js/interpolation.js"></script>
+
+</body>
+</html>
