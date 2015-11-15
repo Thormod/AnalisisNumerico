@@ -49,13 +49,16 @@ $(document).ready(function() {
         var arr = new Array();
         var x = new Array();
         var y = new Array();
+        var evalValue = parseFloat($("#newton-eval-value").val());
 
         arr = fill_array("newton", nextInput2);
 
         x = divide_array_x(arr);
         y = divide_array_y(arr);
 
-        vandermonde_matrix(x,y,"newton");
+        arr = newton(x,y,nextInput2, evalValue);
+        //arr, x, y, size, method
+        print_solution(arr,x,y,arr.length, "newton");
     });
 
      $("#method3").on("click", function(event) {
@@ -89,7 +92,44 @@ function erase_point(nextInput, method){
     return nextInput;
 }
 
-/************************************************************************************/
+/************************************************************************************/  
+function print_solution(arr, x, y, size, method){
+    $("#"+method+"-area").empty();
+
+    if(method == "newton"){
+        var temp = '';
+        var pol = 'P(x): '+arr[0][0]+'<br>';
+        var result = arr[0][0];
+        var aux = 1;
+
+        for(var i = 1; i < size; i++){
+            temp += '(x - '+x[i-1]+')';
+            if(arr[i][i] > 0){
+                pol += ' + '+arr[i][i] + ' * ' + temp;
+            }else{
+                pol += ' '+arr[i][i] + ' * ' + temp;
+            }
+            aux = aux * (parseFloat($("#newton-eval-value").val()))-parseFloat(x[i-1]);
+            result += arr[i][i]*aux;
+            $("#"+method+"-area").append(pol+'<br>');
+            pol = '';
+        };
+        pol = 'Result: f( '+$("#newton-eval-value").val()+' ) = '+result;
+        $("#"+method+"-area").append(pol+'<br>');
+
+    }else{
+        var equ = "[ ";
+        for(var i = 0; i < size; i++){
+            equ += " x"+i+": "+arr[i];
+            if(i != size-parseFloat(1)){
+                equ +=", <br>";
+            }
+        };
+        equ += " ]";
+        $("#"+method+"-area").append(equ);
+    }
+}
+
 
 function mat_imp(f){
     var equ = '';
@@ -114,6 +154,7 @@ function matrixFill(size){
 
         return f;
 }
+
 
 function array_initialization(size){
     var x = new Array();
@@ -142,18 +183,8 @@ function regressive_replacement(arr, method){
         };
         x[i] =  (parseFloat(f[p][i])-parseFloat(sum))/parseFloat(f[i][i]); 
     };
-
-    $("#"+method+"-area").empty();
-
-    var equ = "[ ";
-    for(var i = 0; i < rows; i++){
-        equ += " x"+i+": "+x[i];
-        if(i != rows-parseFloat(1)){
-            equ +=", <br>";
-        }
-    }
-    equ += " ]";
-    $("#"+method+"-area").append(equ);
+    //arr, x, y, size, method
+    print_solution(x,0,0,parseFloat(rows), method);
 
 }
 
@@ -184,19 +215,33 @@ function mat_out(arr, method){
 	
     var rows =arr.length;
     var equ = "";
-
-    for (var i = 0; i <= rows; i++) {
-        equ ='<div class="col-lg-2" >';
-        for (var j = 0; j < rows; j++) {
-            if(i == rows){
-                equ += '<input class="form-control" style="width=30px; background-color: #286090; color: #fff;" value="'+arr[j][i]+'"  id="matrixi'+i+'j'+j+'"><br>';
-            }else{
-                equ += '<input class="form-control" style="width=30px;" value="'+arr[j][i]+'"  id="matrixi'+i+'j'+j+'"><br>';
-            }
+    if(method == "newton"){
+         for (var i = 0; i < rows; i++) {
+            equ ='<div class="col-lg-2" >';
+            for (var j = 0; j < rows; j++) {
+                if(i == j){
+                    equ += '<input class="form-control" style="width=30px; background-color: #286090; color: #fff;" value="'+arr[j][i]+'"  id="matrixi'+i+'j'+j+'"><br>';
+                }else{
+                    equ += '<input class="form-control" style="width=30px;" value="'+arr[j][i]+'"  id="matrixi'+i+'j'+j+'"><br>';
+                }
+            };
+           equ += '</div>';
+           $("#"+method+"-mat").append(equ);
         };
-       equ += '</div>';
-       $("#"+method+"-mat").append(equ);
-    };
+    }else{
+        for (var i = 0; i <= rows; i++) {
+            equ ='<div class="col-lg-2" >';
+            for (var j = 0; j < rows; j++) {
+                if(i == rows){
+                    equ += '<input class="form-control" style="width=30px; background-color: #286090; color: #fff;" value="'+arr[j][i]+'"  id="matrixi'+i+'j'+j+'"><br>';
+                }else{
+                    equ += '<input class="form-control" style="width=30px;" value="'+arr[j][i]+'"  id="matrixi'+i+'j'+j+'"><br>';
+                }
+            };
+           equ += '</div>';
+           $("#"+method+"-mat").append(equ);
+        };
+    }
 }
 
 function divide_array_x(arr){
@@ -259,8 +304,34 @@ function vandermonde_matrix(x, y, method){
     simple_gauss(res.length, method);
 }
 
+function matrix_fill_0(size){
+    var res = new Array();
+    for (var i = 0; i < size; i++) {
+        res[i] = new Array();
+        for (var j = 0; j < size; j++) {
+            res[i][j] = 0;
+        };
+    };
+    return res;
+}
 
+function newton(x, y, size, evalValue){
+    console.log(x);
+    console.log(y);
+    console.log('size ' + size);
+    console.log('eval '+evalValue);
 
-function equation_systems_based_method(){
+    var arr = new Array();
+    arr = matrix_fill_0(size);
 
+    for (var i = 0; i < size; i++) {
+        arr[i][0] = parseFloat(y[i]);
+    };
+    for (var i = 0; i < size; i++) {
+        for (var j = 1; j <i+1; j++) {
+            arr[i][j] = (arr[i][j-1] - arr[i-1][j-1])/(parseFloat(x[i])-parseFloat(x[i-j]));
+        };
+    };
+    mat_out(arr, "newton");
+    return arr;
 }
