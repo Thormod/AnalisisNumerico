@@ -383,7 +383,7 @@ function lagrange(size, x, y){
                 term += '[(x - '+x[i]+' ) / ( '+x[k]+' - '+x[i]+' )]'; 
             }
         };
-        $("#lagrange-area").append('L'+k+'(x) = '+term+' <hr> ');
+        $("#lagrange-mat").append('L'+k+'(x) = '+term+' <hr> ');
         
         if(y[k]>0){
             pol += ' + '+y[k]+' * '+term;
@@ -395,7 +395,6 @@ function lagrange(size, x, y){
         res += product * y[k];
     };
     $("#lagrange-mat").append(pol);
-    $("#lagrange-area").append('<br>');
     $("#lagrange-area").append('P('+value+') = '+res);
 
 }
