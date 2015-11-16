@@ -3,10 +3,12 @@ $(document).ready(function() {
     * nextInput1 ---> equations
     * nextInput2 ---> newton
     * nextInput3 ---> lagrage
+    * nextInput4 ---> neville
     */
 	var nextInput1 = 1;
     var nextInput2 = 1;
     var nextInput3 = 1;
+    var nextInput4 = 1;
 
     $("#equations-add-point").on("click", function(event) {
     	nextInput1 = add_point(nextInput1, "equations-control-points", "e");
@@ -19,6 +21,11 @@ $(document).ready(function() {
      $("#lagrange-add-point").on("click", function(event) {
         nextInput3 = add_point(nextInput3, "lagrange-control-points", "l");
     });
+     $("#neville-add-point").on("click", function(event) {
+        nextInput4 = add_point(nextInput4, "neville-control-points", "i");
+    });
+
+
 
     $("#equations-erase-point").on("click", function(event){
         nextInput1 = erase_point(nextInput1, "e");
@@ -30,6 +37,10 @@ $(document).ready(function() {
 
     $("#lagrange-erase-point").on("click", function(event){
         nextInput3 = erase_point(nextInput3, "l");
+    });
+
+     $("#neville-erase-point").on("click", function(event){
+        nextInput4 = erase_point(nextInput4, "i");
     });
 
     $("#method1").on("click", function(event) {
@@ -44,7 +55,7 @@ $(document).ready(function() {
 
     	vandermonde_matrix(x,y,"equations");
     });
-
+    //Newton
     $("#method2").on("click", function(event) {
         var arr = new Array();
         var x = new Array();
@@ -60,7 +71,7 @@ $(document).ready(function() {
         //arr, x, y, size, method
         print_solution(arr,x,y,arr.length, "newton");
     });
-
+    //LaGrange
      $("#method3").on("click", function(event) {
         var arr = new Array();
         var x = new Array();
@@ -71,8 +82,25 @@ $(document).ready(function() {
         x = divide_array_x(arr);
         y = divide_array_y(arr);
 
-        vandermonde_matrix(x,y,"lagrange");
+        lagrange(arr.length/2,x,y);
+
+        //vandermonde_matrix(x,y,"lagrange");
     });
+     //Neville
+     $("#method4").on("click", function(event) {
+        var arr = new Array();
+        var x = new Array();
+        var y = new Array();
+
+        arr = fill_array("neville", nextInput2);
+
+        x = divide_array_x(arr);
+        y = divide_array_y(arr);
+
+        neville(arr.length/2,x,y);
+        //vandermonde_matrix(x,y,"neville");
+    });
+
 
 });
 /********************     Buttons functions   ***************************************/
@@ -98,7 +126,7 @@ function print_solution(arr, x, y, size, method){
 
     if(method == "newton"){
         var temp = '';
-        var pol = 'P(x): '+arr[0][0]+'<br>';
+        var pol = 'P(X) = '+arr[0][0]+'<br>';
         var result = arr[0][0];
         var aux = 1;
 
@@ -111,6 +139,7 @@ function print_solution(arr, x, y, size, method){
             }
             aux = aux * (parseFloat($("#newton-eval-value").val()))-parseFloat(x[i-1]);
             result += arr[i][i]*aux;
+            
             $("#"+method+"-area").append(pol+'<br>');
             pol = '';
         };
@@ -215,7 +244,7 @@ function mat_out(arr, method){
 	
     var rows =arr.length;
     var equ = "";
-    if(method == "newton"){
+    if(method == "newton" || method == "neville"){
          for (var i = 0; i < rows; i++) {
             equ ='<div class="col-lg-2" >';
             for (var j = 0; j < rows; j++) {
@@ -274,7 +303,10 @@ function fill_array(method, lenght){
         id = "newton-control-points";
     }else if(method == "lagrange"){
         id = "lagrange-control-points"; 
+    }else if(method == "neville"){
+        id = "neville-control-points";
     }
+
 
 	$("#"+id+" input").each(function(){
         arr[length] = $(this).val();
@@ -316,10 +348,6 @@ function matrix_fill_0(size){
 }
 
 function newton(x, y, size, evalValue){
-    console.log(x);
-    console.log(y);
-    console.log('size ' + size);
-    console.log('eval '+evalValue);
 
     var arr = new Array();
     arr = matrix_fill_0(size);
@@ -332,6 +360,65 @@ function newton(x, y, size, evalValue){
             arr[i][j] = (arr[i][j-1] - arr[i-1][j-1])/(parseFloat(x[i])-parseFloat(x[i-j]));
         };
     };
+
     mat_out(arr, "newton");
     return arr;
+}
+
+function lagrange(size, x, y){
+    var res = 0;
+    var pol = 'P(x) = <br>';
+    var product = 1;
+    var term = '';
+    var value = parseFloat($("#lagrange-eval-value").val());
+    var res = 0;
+
+    for (var k = 0; k < size; k++) {
+        product = 1;
+        term = '';
+
+        for (var i = 0; i < size; i++) {
+            if(i != k){
+                product *= (value-x[i])/(x[k]-x[i]);
+                term += '[(x - '+x[i]+' ) / ( '+x[k]+' - '+x[i]+' )]'; 
+            }
+        };
+        $("#lagrange-area").append('L'+k+'(x) = '+term+' <hr> ');
+        
+        if(y[k]>0){
+            pol += ' + '+y[k]+' * '+term;
+        }else{
+            pol += ' '+y[k]+' * '+term;
+        }
+
+        pol += '<br>';
+        res += product * y[k];
+    };
+    $("#lagrange-mat").append(pol);
+    $("#lagrange-area").append('<br>');
+    $("#lagrange-area").append('P('+value+') = '+res);
+
+}
+
+function neville(size, x, y){
+
+    var arr = new Array();
+    arr = matrix_fill_0(size);
+    var value = parseFloat($("#neville-eval-value").val());
+
+    for (var i = 0; i < size; i++) {
+        arr[i][0] = y[i];
+    };
+
+    for (var i = 0; i < size; i++) {
+        for (var j = 1; j < i+1 ; j++) {
+            arr[i][j] = ((value-x[i-j])*arr[i][j-1] - ((value-x[i])*arr[i-1][j-1]))/(x[i] - x[i-j]);
+        };
+    };
+
+
+    $("#neville-area").append('P('+value+') = '+arr[size-1][size-1]);
+
+    mat_out(arr, "neville");
+
 }
