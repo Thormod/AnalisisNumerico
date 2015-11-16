@@ -1,30 +1,62 @@
 $(document).ready(function() {
     /*
     * nextInput1 ---> trapezium
+    * nextInput2 ---> simpson-1-3
     */
     var nextInput1 = 1;
+    var nextInput2 = 1;
+
     var prueba = new Array(1,0.718281828,1.1,0.804166024,1.2,0.929116923,1.3,1.069296668,1.4,1.255199967,1.5,1.48168907,1.6,1.753032424,1.7,2.073947392,1.8,2.449647464,1.9,2.885894442,2,3.389056099);
+    var prueba2 = new Array(1,2.635802,1.1,2.676796,1.2,2.716208,1.3,2.753612,1.4,2.788694,1.5,2.821241,1.6,2.851123,1.7,2.878282,1.8,2.902721,1.9,2.924491,2,2.943681,2.1,2.960411,2.2,2.974825);
 
     $("#trapezium-add-point").on("click", function(event) {
         nextInput1 = add_point(nextInput1, "trapezium-control-points", "t");
     });
 
+    $("#simpson-1-3-add-point").on("click", function(event) {
+        nextInput2 = add_point(nextInput2, "simpson-1-3-control-points", "s13");
+    });
+
     $("#trapezium-erase-point").on("click", function(event){
         nextInput1 = erase_point(nextInput1, "t");
     });
+    $("#simpson-1-3-erase-point").on("click", function(event){
+        nextInput2 = erase_point(nextInput2, "s13");
+    });
 
+    //Trapezium method
     $("#method1").on("click", function(event) {
         var arr = new Array();
         var x = new Array();
         var y = new Array();
 
-        arr = fill_array("trapezium", nextInput1);
+        //arr = fill_array("trapezium", nextInput1);
+        arr = prueba2;
 
         x = divide_array_x(arr);
         y = divide_array_y(arr);
 
+        trapezium0(arr.length/2, x, y);
         trapezium1(arr.length/2, x, y);
         trapezium2();
+
+    });
+
+    //Simpson 1/3 method
+    $("#method2").on("click", function(event) {
+        var arr = new Array();
+        var x = new Array();
+        var y = new Array();
+
+        //arr = fill_array("simpson-1-3", nextInput2);
+        arr = prueba2;
+
+        x = divide_array_x(arr);
+        y = divide_array_y(arr);
+
+        simpson_1_3_0(arr.length/2, x, y);
+        simpson_1_3_1(arr.length/2, x, y);
+        simpson_1_3_2();
 
     });
 });
@@ -114,13 +146,32 @@ function mat_out(arr, method){
     }
 }
 /***********************************************************************************/
-function trapezium1(size, x, y){
+function trapezium0(size, x, y){
     var h = parseFloat(x[size-1]) - parseFloat(x[0]);
-    var trapezium = (parseFloat(y[size-1]) - parseFloat(y[0]))/2;
+    var trapezium = (parseFloat(y[size-1]) + parseFloat(y[0]))/2;
 
     var result = parseFloat(trapezium)*parseFloat(h);
+
     $("#trapezium-area").empty();
     $("#trapezium-area").append('Result = '+ result);
+}
+
+function trapezium1(size, x, y){
+    var h = parseFloat(x[size-1]) - parseFloat(x[size-2]);
+    var sum = parseFloat(y[0]);
+    var aux = 0;
+
+    for(var i=1; i<size-1; i++){
+        aux += parseFloat(y[i]);
+    };
+
+    aux *= 2;
+    sum += parseFloat(aux) + parseFloat(y[size-1]);
+
+    var result = (sum * h)/2;
+
+    $("#trapezium-area").append('<br>(Widespread) Result = ' + result);
+
 }
 
 function trapezium2(){
@@ -158,7 +209,7 @@ function trapezium2(){
             }, f1);
     sum = aux_a + aux_b;
 
-    formula = ' h/2 + [ F('+a+')+ 2 * ( ';
+    formula = ' h/2 + [ F('+a+') + 2 * ( ';
     formula2 = (h/2) + ' [ '+aux_a+' + 2 * ( ';
 
     for (var i = 1; i < intervals; i++) {
@@ -199,6 +250,92 @@ function trapezium2(){
 
 }
 
+function simpson_1_3_0(size, x, y){
+    var h = (parseFloat(x[size-1]) - parseFloat(x[0]))/2;
+    var aux = parseFloat(y[0]) + parseFloat(y[size-1]) + (4*parseFloat(y[(size-1)/2]));
+    var result = (parseFloat(h)*parseFloat(aux))/3;
+
+    $("#simpson-1-3-area").empty();
+    $("#simpson-1-3-area").append('Result = '+ result);
+}
+
+function simpson_1_3_1(size, x, y){
+    var h = parseFloat(x[size-1]) - parseFloat(x[size-2]);
+    var sum = parseFloat(y[0]);
+    var aux = 0;
+
+    for(var i=1; i<size-1; i+=2){
+        aux += parseFloat(y[i]);
+    };
+
+    sum += 4*aux;
+    aux = 0;
+
+    for(var i=2; i<size-1; i+=2){
+        aux += parseFloat(y[i]);
+    };
+
+    sum += 2*aux + parseFloat(y[size-1]);
+
+    var result = (parseFloat(sum) * parseFloat(h))/3
+
+    $("#simpson-1-3-area").append('<br>(Widespread) Result = ' + result);
+}
+function simpson_1_3_2(){
+    var f1 = document.getElementById("simpson-1-3-input_f").value;
+    var f4 = document.getElementById("simpson-1-3-input_f_4").value;
+
+    var a = parseFloat($("#simpson-1-3-a").val());
+    var b = parseFloat($("#simpson-1-3-b").val());
+
+    var intervals = parseFloat($("#simpson-1-3-size").val());
+
+    var h = (b-a)/intervals;
+
+    var sum1 = 0;
+    var sum2 = 0;
+
+    var aux_a = 0;
+    console.log(f1);
+
+    var result = valueOf_fp({
+                "x": a,
+                "y": 0
+            }, f1);
+
+    console.log(result);
+
+    for(var i = 1; i < intervals; i++){
+        aux_a = valueOf_fp({
+                "x": a+i*h,
+                "y": 0
+            }, f1);
+
+        if((i%2) == 0){
+            sum1 += aux_a;
+        }else if((i%2) ==1 ){
+            sum2 += aux_a;
+        }
+    };
+
+    aux_a = valueOf_fp({
+                "x": b,
+                "y": 0
+            }, f1);
+
+    result += 2*sum1 + 4*sum2 + aux_a;
+    result *= (h/3);
+
+    aux_a = valueOf_fp({
+                "x": b,
+                "y": 0
+            }, f4);
+    var error = (Math.pow(h,5)/90) * aux_a;
+
+    $("#simpson-1-3-mat").empty();
+    $("#simpson-1-3-mat").append('Result: <br>');
+    $("#simpson-1-3-mat").append('The integral between '+a+' to '+b+' of '+f1+' is '+ result+' with '+error+' of error');
+}
 
 /***********************************************************************************/
 function createElement(node, parent, scope, err) {

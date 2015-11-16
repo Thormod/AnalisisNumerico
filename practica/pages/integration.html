@@ -7,63 +7,52 @@
       <meta name="description" content="">
       <meta name="author" content="">
       <title>NAnalizer v.2 - Integration</title>
-
-       <!-- Custom CSS -->
+      <!-- Custom CSS -->
       <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
       <!-- Bootstrap latest CSS (Online catch) --
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
-      <!-- Custom fonts (online catch) --
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">-->
-
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+         <!-- Custom fonts (online catch) --
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">-->
       <!-- Bootstrap Core CSS -->
       <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-   <!-- Timeline CSS -->
+      <!-- Timeline CSS -->
       <link href="../dist/css/timeline.css" rel="stylesheet">
-<!-- Custom Fonts -->
+      <!-- Custom Fonts -->
       <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-        <style type="text/css" media="screen">
-      /* enable absolute positioning */
-        .inner-addon { 
-            position: relative; 
-            color: #fff;
-        }
-
-        /* style icon */
-        .inner-addon .glyphicon {
+      <style type="text/css" media="screen">
+         /* enable absolute positioning */
+         .inner-addon { 
+         position: relative; 
+         color: #fff;
+         }
+         /* style icon */
+         .inner-addon .glyphicon {
          width: 60px;
-          position: absolute;
-          padding: 10px;
-          pointer-events: none;
-        }
-
-        /* align icon */
-        .left-addon .glyphicon  { left:  0px;}
-        .right-addon .glyphicon { right: 0px;}
-
-        /* add padding  */
-        .left-addon input  { padding-left:  30px; }
-        .right-addon input { padding-right: 30px; }
-
-        /* Fractions */
-        .fraction {
-          display: inline-block;
-          position: relative;
-          vertical-align: middle; 
-          letter-spacing: 0.001em;
-          text-align: center;
-          
-          }
-      .fraction > span { 
-          display: block; 
-          padding: 0.1em; 
-          }
-      .fraction span.fdn {border-top: thin solid black;}
-      .fraction span.bar {display: none;}
-
-   </style> 
-
-
+         position: absolute;
+         padding: 10px;
+         pointer-events: none;
+         }
+         /* align icon */
+         .left-addon .glyphicon  { left:  0px;}
+         .right-addon .glyphicon { right: 0px;}
+         /* add padding  */
+         .left-addon input  { padding-left:  30px; }
+         .right-addon input { padding-right: 30px; }
+         /* Fractions */
+         .fraction {
+         display: inline-block;
+         position: relative;
+         vertical-align: middle; 
+         letter-spacing: 0.001em;
+         text-align: center;
+         }
+         .fraction > span { 
+         display: block; 
+         padding: 0.1em; 
+         }
+         .fraction span.fdn {border-top: thin solid black;}
+         .fraction span.bar {display: none;}
+      </style>
    </head>
    <body>
       <div id="wrapper">
@@ -79,14 +68,12 @@
             <a class="navbar-brand" href="index.html">NAnalizer v.2 - Integration</a>
          </div>
          <!-- /.navbar-header -->
-
          <!-- /.navbar-top-links -->
          <div class="navbar-default sidebar" role="navigation" style="background-color: #fff;">
             <div class="sidebar-nav navbar-collapse">
                <ul class="nav" id="side-menu">
                   <li>
                      <a href="#trapezium"><i class="fa fa-bar-chart-o fa-fw"></i> Trapezium Method</a>
-                     
                      <hr>
                      Other resources
                      <a href="one-variable-equation.html"><i class="fa fa-television fa-fw"></i> One variable equation</a>
@@ -99,148 +86,262 @@
          </div>
          <!-- /.navbar-static-side -->
       </nav>
-
+      
       <div id="page-wrapper" style="margin-top: 20px;">
-      <div class="row" id="trapezium">
-         <div class="col-lg-12">
-            <h1 class="page-header">Trapezium Method</h1>
-         </div>
-         <!-- /.col-lg-12 -->
-      </div>
-      <!-- /.row -->
-
-       <div class="row">
-         <!-- /.col-lg-8 -->
-         <div class="col-lg-4">
-            <div class="panel panel-default">
-               <div class="panel-heading">
-                  <i class="fa fa-code fa-fw"></i> Variables:
-               </div>
-               <!-- /.panel-heading -->
-               <div class="panel-body">
-                  <div class="list-group">
-
-
-                      <ul class="nav nav-tabs" role="tablist">
-                         <li role="presentation" class="active">
-                              <a href="#trapezium-points" aria-controls="trapezium-points" role="tab" data-toggle="tab">Points</a>
-                         </li>
-                         <li role="presentation"><a href="#trapezium-function" aria-controls="trapezium-function" role="tab" data-toggle="tab">Function</a></li>
-                      </ul>
-
-                      <!-- Tab panes -->
-                    <div class="tab-content">
-                     <div role="tabpanel" class="tab-pane active" id="trapezium-points">
-
-                          <span>Points:</span>
-                     <div id="trapezium-control-points">
-                     <div class="row">
-                        <div class="col-lg-6">
-                           <span>X:</span>
-                           <input class="form-control" id="tx0" value=''>
-                        </div>
-                        <div class="col-lg-6">
-                           <span>Y:</span>
-                           <input class="form-control" id="ty0" value=''>
-                        </div>
-                     </div>
-                  </div>
-                  <hr>
-
-                   <div class="inner-addon left-addon">
-                     <i class="glyphicon glyphicon-plus"></i>
-                     <input type="button" class="btn btn-primary btn-lg btn-block" value="Drop Point" name="" id="trapezium-erase-point" />
-                     <input type="button" class="btn btn-primary btn-lg btn-block" value="Add Point" name="" id="trapezium-add-point" />
-                  </div><hr>
-
-                     </div>
-                     
-                     <div role="tabpanel" class="tab-pane" id="trapezium-function">
-
-                        <span>F(X):</span>
-                     <textarea class="form-control" rows="3" id="trapezium-input_f"></textarea>
-                     <span>F''(X):</span>
-                     <textarea class="form-control" rows="3" id="trapezium-input_f_2"></textarea>
-                     <span>Intervals size:</span>
-                     <input class="form-control" id="trapezium-size" value=''>
-                     <span>Zi:</span>
-                     <input class="form-control" id="trapezium-zi" value=''>
-
-                     <span>Integral values:</span>
-                     <div class="row">
-                        <div class="col-lg-6">
-                           <span>A:</span>
-                           <input class="form-control" id="trapezium-a" value=''>
-                        </div>
-                        <div class="col-lg-6">
-                           <span>B:</span>
-                           <input class="form-control" id="trapezium-b" value=''>
-                        </div>
-                     </div>
-
-               </div>
-                  </div>
-               </div>
-                 
-                  <input type="button" class="btn btn-primary btn-lg btn-block" name="" id="method1" value="Calculate">
-                  <a href="" class="pull-right" data-toggle="modal" data-target="#equation-modal">Help <i class="fa fa-question-circle"></i></a>
-               </div>
-               <!-- /.panel-body -->
-                 <!-- /.panel -->
-
+         <div class="row" id="trapezium">
+            <div class="col-lg-12">
+               <h1 class="page-header">Trapezium Method</h1>
             </div>
-            <!-- /.panel -->
-            <div class="panel panel-default">
-               <div class="panel-heading">
-                  <i class="fa fa-plus fa-fw"></i> Solution:
-               </div>
-               <!-- /.panel-heading -->
-               <div class="panel-body">
-                  <section id="trapezium-area"></section>
-               </div>
-               <!-- /.panel-body -->
-            </div>
-            
+            <!-- /.col-lg-12 -->
          </div>
          <!-- /.row -->
-               <div class="col-lg-8">
-            <div class="panel panel-default">
-               <div class="panel-heading">
-                  <i class="fa fa-table fa-fw"></i> Result table:
+         <div class="row">
+            <!-- /.col-lg-8 -->
+            <div class="col-lg-4">
+               <div class="panel panel-default">
+                  <div class="panel-heading">
+                     <i class="fa fa-code fa-fw"></i> Variables:
+                  </div>
+                  <!-- /.panel-heading -->
+                  <div class="panel-body">
+                     <div class="list-group">
+                        <ul class="nav nav-tabs" role="tablist">
+                           <li role="presentation" class="active">
+                              <a href="#trapezium-points" aria-controls="trapezium-points" role="tab" data-toggle="tab">Points</a>
+                           </li>
+                           <li role="presentation"><a href="#trapezium-function" aria-controls="trapezium-function" role="tab" data-toggle="tab">Function</a></li>
+                        </ul>
+                        <br>
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                           <div role="tabpanel" class="tab-pane active" id="trapezium-points">
+                              <span>Points:</span>
+                              <div id="trapezium-control-points">
+                                 <div class="row">
+                                    <div class="col-lg-6">
+                                       <span>X:</span>
+                                       <input class="form-control" id="tx0" value=''>
+                                    </div>
+                                    <div class="col-lg-6">
+                                       <span>Y:</span>
+                                       <input class="form-control" id="ty0" value=''>
+                                    </div>
+                                 </div>
+                              </div>
+                              <hr>
+                              <div class="inner-addon left-addon">
+                                 <i class="glyphicon glyphicon-plus"></i>
+                                 <input type="button" class="btn btn-primary btn-lg btn-block" value="Drop Point" name="" id="trapezium-erase-point" />
+                                 <input type="button" class="btn btn-primary btn-lg btn-block" value="Add Point" name="" id="trapezium-add-point" />
+                              </div>
+                              <hr>
+                           </div>
+                           <div role="tabpanel" class="tab-pane" id="trapezium-function">
+                              <span>F(X):</span>
+                              <textarea class="form-control" rows="3" id="trapezium-input_f"></textarea>
+                              <span>F''(X):</span>
+                              <textarea class="form-control" rows="3" id="trapezium-input_f_2"></textarea>
+                              <span>Intervals size:</span>
+                              <input class="form-control" id="trapezium-size" value=''>
+                              <span>Zi:</span>
+                              <input class="form-control" id="trapezium-zi" value=''>
+                              <span>Integral values:</span>
+                              <div class="row">
+                                 <div class="col-lg-6">
+                                    <span>A:</span>
+                                    <input class="form-control" id="trapezium-a" value=''>
+                                 </div>
+                                 <div class="col-lg-6">
+                                    <span>B:</span>
+                                    <input class="form-control" id="trapezium-b" value=''>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <input type="button" class="btn btn-primary btn-lg btn-block" name="" id="method1" value="Calculate">
+                     <a href="" class="pull-right" data-toggle="modal" data-target="#trapezium-modal">Help <i class="fa fa-question-circle"></i></a>
+                  </div>
+                  <!-- /.panel-body -->
+                  <!-- /.panel -->
                </div>
-               <!-- /.panel-heading -->
-               <div class="panel-body" id="trapezium-mat" style=" overflow:auto;">
+               <!-- /.panel -->
+               <div class="panel panel-default">
+                  <div class="panel-heading">
+                     <i class="fa fa-plus fa-fw"></i> Solution:
+                  </div>
+                  <!-- /.panel-heading -->
+                  <div class="panel-body">
+                     <section id="trapezium-area"></section>
+                  </div>
+                  <!-- /.panel-body -->
+               </div>
+            </div>
+            <!-- /.row -->
+            <div class="col-lg-8">
+               <div class="panel panel-default">
+                  <div class="panel-heading">
+                     <i class="fa fa-table fa-fw"></i> Result table:
+                  </div>
+                  <!-- /.panel-heading -->
+                  <div class="panel-body" id="trapezium-mat" style=" overflow:auto;">
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div>
 
+         <hr>
+
+         <div id="page-wrapper" style="margin-top: 20px; margin-left: -31px;">
+         <div class="row" id="simpson-1-3">
+            <div class="col-lg-12">
+               <h1 class="page-header">Simpson 1/3 Method</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+         </div>
+         <!-- /.row -->
+         <div class="row">
+            <!-- /.col-lg-8 -->
+            <div class="col-lg-4">
+               <div class="panel panel-default">
+                  <div class="panel-heading">
+                     <i class="fa fa-code fa-fw"></i> Variables:
+                  </div>
+                  <!-- /.panel-heading -->
+                  <div class="panel-body">
+                     <div class="list-group">
+                        <ul class="nav nav-tabs" role="tablist">
+                           <li role="presentation" class="active">
+                              <a href="#simpson-1-3-points" aria-controls="simpson-1-3-points" role="tab" data-toggle="tab">Points</a>
+                           </li>
+                           <li role="presentation"><a href="#simpson-1-3-function" aria-controls="simpson-1-3-function" role="tab" data-toggle="tab">Function</a></li>
+                        </ul>
+                        <br>
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                           <div role="tabpanel" class="tab-pane active" id="simpson-1-3-points">
+                              <span>Points:</span>
+                              <div id="simpson-1-3-control-points">
+                                 <div class="row">
+                                    <div class="col-lg-6">
+                                       <span>X:</span>
+                                       <input class="form-control" id="s13x0" value=''>
+                                    </div>
+                                    <div class="col-lg-6">
+                                       <span>Y:</span>
+                                       <input class="form-control" id="s13y0" value=''>
+                                    </div>
+                                 </div>
+                              </div>
+                              <hr>
+                              <div class="inner-addon left-addon">
+                                 <i class="glyphicon glyphicon-plus"></i>
+                                 <input type="button" class="btn btn-primary btn-lg btn-block" value="Drop Point" name="" id="simpson-1-3-erase-point" />
+                                 <input type="button" class="btn btn-primary btn-lg btn-block" value="Add Point" name="" id="simpson-1-3-add-point" />
+                              </div>
+                              <hr>
+                           </div>
+                           <div role="tabpanel" class="tab-pane" id="simpson-1-3-function">
+                              <span>F(X):</span>
+                              <textarea class="form-control" rows="3" id="simpson-1-3-input_f"></textarea> 
+                              <span>F'4'(X):</span>
+                              <textarea class="form-control" rows="3" id="simpson-1-3-input_f_4"></textarea>                   
+                              <span>Intervals size:</span>
+                              <input class="form-control" id="simpson-1-3-size" value=''>
+                              <span>Integral values:</span>
+                              <div class="row">
+                                 <div class="col-lg-6">
+                                    <span>A:</span>
+                                    <input class="form-control" id="simpson-1-3-a" value=''>
+                                 </div>
+                                 <div class="col-lg-6">
+                                    <span>B:</span>
+                                    <input class="form-control" id="simpson-1-3-b" value=''>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <input type="button" class="btn btn-primary btn-lg btn-block" name="" id="method2" value="Calculate">
+                     <a href="" class="pull-right" data-toggle="modal" data-target="#simpson-1-3-modal">Help <i class="fa fa-question-circle"></i></a>
+                  </div>
+                  <!-- /.panel-body -->
+                  <!-- /.panel -->
+               </div>
+               <!-- /.panel -->
+               <div class="panel panel-default">
+                  <div class="panel-heading">
+                     <i class="fa fa-plus fa-fw"></i> Solution:
+                  </div>
+                  <!-- /.panel-heading -->
+                  <div class="panel-body">
+                     <section id="simpson-1-3-area"></section>
+                  </div>
+                  <!-- /.panel-body -->
+               </div>
+            </div>
+            <!-- /.row -->
+            <div class="col-lg-8">
+               <div class="panel panel-default">
+                  <div class="panel-heading">
+                     <i class="fa fa-table fa-fw"></i> Result table:
+                  </div>
+                  <!-- /.panel-heading -->
+                  <div class="panel-body" id="simpson-1-3-mat" style=" overflow:auto;">
+                  </div>
                </div>
             </div>
          </div>
 
+
       </div>
-   </div>
-
-
-      <!-- Gauss Simple modal -->
-      <div class="modal fade" id="gauss-simple-modal">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title">Gauss Simple</h4>
+      <!-- Trapezium modal -->
+      <div class="modal fade" id="trapezium-modal">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title">Trapezium Method</h4>
+               </div>
+               <div class="modal-body">
+                  <p></p>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+               </div>
             </div>
-            <div class="modal-body">
-              <p></p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-          </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-      </div><!-- /.modal -->
-      <!-- /Gauss Simple modal -->
+            <!-- /.modal-content -->
+         </div>
+         <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+      <!-- /Trapezium modal -->
 
-<!-- /Modals -->
+      <!-- Simpson 1-3 modal -->
+      <div class="modal fade" id="simpson-1-3-modal">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title">Simpson 1/3 Method</h4>
+               </div>
+               <div class="modal-body">
+                  <p></p>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+               </div>
+            </div>
+            <!-- /.modal-content -->
+         </div>
+         <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+      <!-- /Simpson 1-3 modal -->
 
- <!-- jQuery -->
+      <!-- /Modals -->
+      <!-- jQuery -->
       <script src="../bower_components/jquery/dist/jquery.min.js"></script>
       <!-- Bootstrap Core JavaScript -->
       <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -250,6 +351,5 @@
       <script src="../js/math.min.js"></script>
       <!-- Custom JavaScript -->
       <script src="../dist/js/integration.js"></script>
-
-</body>
+   </body>
 </html>
