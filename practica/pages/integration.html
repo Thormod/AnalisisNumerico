@@ -295,6 +295,110 @@
          </div>
 
 
+         <hr>
+
+         <div id="page-wrapper" style="margin-top: 20px; margin-left: -31px;">
+         <div class="row" id="simpson-3-8">
+            <div class="col-lg-12">
+               <h1 class="page-header">Simpson 3/8 Method</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+         </div>
+         <!-- /.row -->
+         <div class="row">
+            <!-- /.col-lg-8 -->
+            <div class="col-lg-4">
+               <div class="panel panel-default">
+                  <div class="panel-heading">
+                     <i class="fa fa-code fa-fw"></i> Variables:
+                  </div>
+                  <!-- /.panel-heading -->
+                  <div class="panel-body">
+                     <div class="list-group">
+                        <ul class="nav nav-tabs" role="tablist">
+                           <li role="presentation" class="active">
+                              <a href="#simpson-3-8-points" aria-controls="simpson-3-8-points" role="tab" data-toggle="tab">Points</a>
+                           </li>
+                           <li role="presentation"><a href="#simpson-3-8-function" aria-controls="simpson-3-8-function" role="tab" data-toggle="tab">Function</a></li>
+                        </ul>
+                        <br>
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                           <div role="tabpanel" class="tab-pane active" id="simpson-3-8-points">
+                              <span>Points:</span>
+                              <div id="simpson-3-8-control-points">
+                                 <div class="row">
+                                    <div class="col-lg-6">
+                                       <span>X:</span>
+                                       <input class="form-control" id="s38x0" value=''>
+                                    </div>
+                                    <div class="col-lg-6">
+                                       <span>Y:</span>
+                                       <input class="form-control" id="s38y0" value=''>
+                                    </div>
+                                 </div>
+                              </div>
+                              <hr>
+                              <div class="inner-addon left-addon">
+                                 <i class="glyphicon glyphicon-plus"></i>
+                                 <input type="button" class="btn btn-primary btn-lg btn-block" value="Drop Point" name="" id="simpson-3-8-erase-point" />
+                                 <input type="button" class="btn btn-primary btn-lg btn-block" value="Add Point" name="" id="simpson-3-8-add-point" />
+                              </div>
+                              <hr>
+                           </div>
+                           <div role="tabpanel" class="tab-pane" id="simpson-3-8-function">
+                              <span>F(X):</span>
+                              <textarea class="form-control" rows="3" id="simpson-3-8-input_f"></textarea> 
+                              <span>F'4'(X):</span>
+                              <textarea class="form-control" rows="3" id="simpson-3-8-input_f_4"></textarea>                   
+                              <span>Intervals size:</span>
+                              <input class="form-control" id="simpson-3-8-size" value=''>
+                              <span>Integral values:</span>
+                              <div class="row">
+                                 <div class="col-lg-6">
+                                    <span>A:</span>
+                                    <input class="form-control" id="simpson-3-8-a" value=''>
+                                 </div>
+                                 <div class="col-lg-6">
+                                    <span>B:</span>
+                                    <input class="form-control" id="simpson-3-8-b" value=''>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <input type="button" class="btn btn-primary btn-lg btn-block" name="" id="method3" value="Calculate">
+                     <a href="" class="pull-right" data-toggle="modal" data-target="#simpson-3-8-modal">Help <i class="fa fa-question-circle"></i></a>
+                  </div>
+                  <!-- /.panel-body -->
+                  <!-- /.panel -->
+               </div>
+               <!-- /.panel -->
+               <div class="panel panel-default">
+                  <div class="panel-heading">
+                     <i class="fa fa-plus fa-fw"></i> Solution:
+                  </div>
+                  <!-- /.panel-heading -->
+                  <div class="panel-body">
+                     <section id="simpson-3-8-area"></section>
+                  </div>
+                  <!-- /.panel-body -->
+               </div>
+            </div>
+            <!-- /.row -->
+            <div class="col-lg-8">
+               <div class="panel panel-default">
+                  <div class="panel-heading">
+                     <i class="fa fa-table fa-fw"></i> Result table:
+                  </div>
+                  <!-- /.panel-heading -->
+                  <div class="panel-body" id="simpson-3-8-mat" style=" overflow:auto;">
+                  </div>
+               </div>
+            </div>
+         </div>
+
+
       </div>
       <!-- Trapezium modal -->
       <div class="modal fade" id="trapezium-modal">
@@ -325,6 +429,28 @@
                <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                   <h4 class="modal-title">Simpson 1/3 Method</h4>
+               </div>
+               <div class="modal-body">
+                  <p></p>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+               </div>
+            </div>
+            <!-- /.modal-content -->
+         </div>
+         <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+      <!-- /Simpson 1-3 modal -->
+
+       <!-- Simpson 3-8 modal -->
+      <div class="modal fade" id="simpson-3-8-modal">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title">Simpson 3/8 Method</h4>
                </div>
                <div class="modal-body">
                   <p></p>

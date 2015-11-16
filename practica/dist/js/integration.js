@@ -2,9 +2,11 @@ $(document).ready(function() {
     /*
     * nextInput1 ---> trapezium
     * nextInput2 ---> simpson-1-3
+    * nextInput3 ---> simpson-3-8
     */
     var nextInput1 = 1;
     var nextInput2 = 1;
+    var nextInput3 = 1;
 
     var prueba = new Array(1,0.718281828,1.1,0.804166024,1.2,0.929116923,1.3,1.069296668,1.4,1.255199967,1.5,1.48168907,1.6,1.753032424,1.7,2.073947392,1.8,2.449647464,1.9,2.885894442,2,3.389056099);
     var prueba2 = new Array(1,2.635802,1.1,2.676796,1.2,2.716208,1.3,2.753612,1.4,2.788694,1.5,2.821241,1.6,2.851123,1.7,2.878282,1.8,2.902721,1.9,2.924491,2,2.943681,2.1,2.960411,2.2,2.974825);
@@ -17,11 +19,19 @@ $(document).ready(function() {
         nextInput2 = add_point(nextInput2, "simpson-1-3-control-points", "s13");
     });
 
+    $("#simpson-3-8-add-point").on("click", function(event) {
+        nextInput3 = add_point(nextInput3, "simpson-3-8-control-points", "s38");
+    });
+
+
     $("#trapezium-erase-point").on("click", function(event){
         nextInput1 = erase_point(nextInput1, "t");
     });
     $("#simpson-1-3-erase-point").on("click", function(event){
         nextInput2 = erase_point(nextInput2, "s13");
+    });
+    $("#simpson-3-8-erase-point").on("click", function(event){
+        nextInput3 = erase_point(nextInput3, "s38");
     });
 
     //Trapezium method
@@ -31,7 +41,7 @@ $(document).ready(function() {
         var y = new Array();
 
         //arr = fill_array("trapezium", nextInput1);
-        arr = prueba2;
+        arr = prueba;
 
         x = divide_array_x(arr);
         y = divide_array_y(arr);
@@ -49,7 +59,7 @@ $(document).ready(function() {
         var y = new Array();
 
         //arr = fill_array("simpson-1-3", nextInput2);
-        arr = prueba2;
+        arr = prueba;
 
         x = divide_array_x(arr);
         y = divide_array_y(arr);
@@ -57,6 +67,24 @@ $(document).ready(function() {
         simpson_1_3_0(arr.length/2, x, y);
         simpson_1_3_1(arr.length/2, x, y);
         simpson_1_3_2();
+
+    });
+
+    //Simpson 3/8 method
+    $("#method3").on("click", function(event) {
+        var arr = new Array();
+        var x = new Array();
+        var y = new Array();
+
+        //arr = fill_array("simpson-1-3", nextInput2);
+        arr = prueba2;
+
+        x = divide_array_x(arr);
+        y = divide_array_y(arr);
+
+        simpson_3_8_0(arr.length/2, x, y);
+        //simpson_3_8_1(arr.length/2, x, y);
+        simpson_3_8_2();
 
     });
 });
@@ -296,14 +324,11 @@ function simpson_1_3_2(){
     var sum2 = 0;
 
     var aux_a = 0;
-    console.log(f1);
 
     var result = valueOf_fp({
                 "x": a,
                 "y": 0
             }, f1);
-
-    console.log(result);
 
     for(var i = 1; i < intervals; i++){
         aux_a = valueOf_fp({
@@ -335,6 +360,79 @@ function simpson_1_3_2(){
     $("#simpson-1-3-mat").empty();
     $("#simpson-1-3-mat").append('Result: <br>');
     $("#simpson-1-3-mat").append('The integral between '+a+' to '+b+' of '+f1+' is '+ result+' with '+error+' of error');
+}
+
+function simpson_3_8_0(size, x, y){
+    var h = (parseFloat(x[size-1]) - parseFloat(x[0]))/3;
+    var aux = parseFloat(y[0]) + parseFloat(y[size-1]) + 3*(parseFloat(y[((size-1)/3)*1])+parseFloat(y[((size-1)/3)*2]));
+    var result = 3*(parseFloat(h)*parseFloat(aux))/8;
+
+    $("#simpson-3-8-area").empty();
+    $("#simpson-3-8-area").append('Result = '+ result);
+
+}
+function simpson_3_8_1(size, x, y){
+
+}
+function simpson_3_8_2(){
+    var f1 = document.getElementById("simpson-3-8-input_f").value;
+    var f4 = document.getElementById("simpson-3-8-input_f_4").value;
+
+    var a = parseFloat($("#simpson-3-8-a").val());
+    var b = parseFloat($("#simpson-3-8-b").val());
+
+    var intervals = parseFloat($("#simpson-3-8-size").val());
+
+    var h = (b-a)/intervals;
+
+    var sum1 = 0;
+    var sum2 = 0;
+    var sum3 = 0;
+
+    var aux_a = 0;
+
+    var result = valueOf_fp({
+                "x": a,
+                "y": 0
+            }, f1);
+
+    for(var i = 1; i < intervals ; i++){
+        aux_a = valueOf_fp({
+                "x": a+i*h,
+                "y": 0
+            }, f1);
+
+        if((i%3) == 1){
+            sum1 += aux_a;
+        }else if((i%3) == 2){
+            sum2 += aux_a;
+        }else{
+            sum3 += aux_a;
+        }
+    };
+
+    result += 3*sum1;
+    result += 3*sum2;
+    result += 2*sum3;
+    
+    aux_a = valueOf_fp({
+                "x": b,
+                "y": 0
+            }, f1);
+    result += aux_a;
+    result *= (3*h/8);
+    
+    aux_a = valueOf_fp({
+                "x": b,
+                "y": 0
+            }, f4);
+
+    var error = (Math.pow(h,5)/90) * aux_a;
+
+    $("#simpson-3-8-mat").empty();
+    $("#simpson-3-8-mat").append('Result: <br>');
+    $("#simpson-3-8-mat").append('The integral between '+a+' to '+b+' of '+f1+' is '+ result+' with '+error+' of error');
+
 }
 
 /***********************************************************************************/
