@@ -20,6 +20,7 @@
    <!-- Timeline CSS -->
       <link href="../dist/css/timeline.css" rel="stylesheet">
 <!-- Custom Fonts -->
+<link href="../bower_components/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
       <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
    </head>
@@ -53,8 +54,9 @@
                      <a href="#multiple"><i class="fa fa-users fa-fw"></i> Multiple Roots</a>
                      <hr>
                      Other resources
-                     <a href="equation-systems.html"><i class="fa fa-television fa-fw"></i> Equation systems</a>
-                     <a href="interpolation.html"><i class="fa fa-television fa-fw"></i> Interpolation</a>
+                     <a href="equation-systems.html"><i class="fa fa-university fa-fw"></i> Equation systems</a>
+                     <a href="interpolation.html"><i class="fa fa-code-fork fa-fw"></i> Interpolation</a>
+                     <a href="integration.html"><i class="fa fa-bars fa-fw"></i> Integration</a>
                      <a href="plotter.html" target="_blank"><i class="fa fa-line-chart fa-fw"></i> Plotter</a>
                   </li>
                </ul>
@@ -120,9 +122,9 @@
                      <span>X:</span>
                      <input class="form-control" id="x" value=''>
                      <span>Delta:</span>
-                     <input class="form-control" id="delta" value='0.1'>
+                     <input class="form-control" id="delta" value=''>
                      <span>Iterations:</span>
-                     <input class="form-control" id="iteration" value='100'>
+                     <input class="form-control" id="iteration" value=''>
                   </div>
                   <input type="button" class="btn btn-primary btn-lg btn-block" name="" id="method1" value="Calculate">
                   <a href="" class="pull-right" data-toggle="modal" data-target="#incremental-modal">Help <i class="fa fa-question-circle"></i></a>
@@ -183,13 +185,13 @@
                <div class="panel-body">
                   <div class="list-group">
                      <span>XInf:</span>
-                     <input class="form-control" id="xinf" value='4.64'>
+                     <input class="form-control" id="xinf" value=''>
                      <span>XSup:</span>
-                     <input class="form-control" id="xsup" value='4.65'>
+                     <input class="form-control" id="xsup" value=''>
                      <span>Tolerance:</span>
-                     <input class="form-control" id="tol" value='0.00005'>
+                     <input class="form-control" id="tol" value=''>
                      <span>Iterations:</span>
-                     <input class="form-control" id="iteration_b" value='100'>
+                     <input class="form-control" id="iteration_b" value=''>
                   </div>
                   <input type="button" class="btn btn-primary btn-lg btn-block" name="" id="method2" value="Calculate">
                   <a href="" class="pull-right" data-toggle="modal" data-target="#bisection-modal">Help <i class="fa fa-question-circle"></i></a>
@@ -253,13 +255,13 @@
                <div class="panel-body table-outter">
                   <div class="list-group">
                      <span>XInf:</span>
-                     <input class="form-control" id="xinf_f" value='2.9'>
+                     <input class="form-control" id="xinf_f" value=''>
                      <span>XSup:</span>
-                     <input class="form-control" id="xsup_f" value='3.1'>
+                     <input class="form-control" id="xsup_f" value=''>
                      <span>Tolerance:</span>
-                     <input class="form-control" id="tol_f" value='0.1'>
+                     <input class="form-control" id="tol_f" value=''>
                      <span>Iterations:</span>
-                     <input class="form-control" id="iteration_f" value='100'>
+                     <input class="form-control" id="iteration_f" value=''>
                   </div>
                   <input type="button" class="btn btn-primary btn-lg btn-block" name="" id="method3" value="Calculate">
                   <a href="" class="pull-right" data-toggle="modal" data-target="#false-rule-modal">Help <i class="fa fa-question-circle"></i></a>
@@ -325,11 +327,11 @@
                      <span>G(X):</span>
                      <textarea class="form-control" rows="3" id="input_f"></textarea>
                      <span>X:</span>
-                     <input class="form-control" id="xnumber" value='-4'>
+                     <input class="form-control" id="xnumber" value=''>
                      <span>Tolerance:</span>
-                     <input class="form-control" id="tol_fp" value='0.00005'>
+                     <input class="form-control" id="tol_fp" value=''>
                      <span>Iterations:</span>
-                     <input class="form-control" id="iteration_fp" value='100'>
+                     <input class="form-control" id="iteration_fp" value=''>
                   </div>
                   <input type="button" class="btn btn-primary btn-lg btn-block" name="" id="method4" value="Calculate">
                   <a href="" class="pull-right" data-toggle="modal" data-target="#fixed-point-modal">Help <i class="fa fa-question-circle"></i></a>
@@ -393,11 +395,11 @@
                      <span>f'(X):</span>
                      <textarea class="form-control" rows="3" id="input_n"></textarea>
                      <span>X0:</span>
-                     <input class="form-control" id="xnumber_n" value='2'>
+                     <input class="form-control" id="xnumber_n" value=''>
                      <span>Tolerance:</span>
-                     <input class="form-control" id="tol_n" value='0.000005'>
+                     <input class="form-control" id="tol_n" value=''>
                      <span>Iterations:</span>
-                     <input class="form-control" id="iteration_n" value='100'>
+                     <input class="form-control" id="iteration_n" value=''>
                   </div>
                   <input type="button" class="btn btn-primary btn-lg btn-block" name="" id="method5" value="Calculate">
                   <a href="" class="pull-right" data-toggle="modal" data-target="#newton-modal">Help <i class="fa fa-question-circle"></i></a>
@@ -460,13 +462,13 @@
                <div class="panel-body">
                   <div class="list-group">
                      <span>X0:</span>
-                     <input class="form-control" id="x0_s" value='10'>
+                     <input class="form-control" id="x0_s" value=''>
                      <span>X1:</span>
-                     <input class="form-control" id="x1_s" value='15'>
+                     <input class="form-control" id="x1_s" value=''>
                      <span>Tolerance:</span>
-                     <input class="form-control" id="tol_s" value='0.00001'>
+                     <input class="form-control" id="tol_s" value=''>
                      <span>Iterations:</span>
-                     <input class="form-control" id="iteration_s" value='100'>
+                     <input class="form-control" id="iteration_s" value=''>
                   </div>
                   <input type="button" class="btn btn-primary btn-lg btn-block" name="" id="method6" value="Calculate">
                   <a href="" class="pull-right" data-toggle="modal" data-target="#secant-modal">Help <i class="fa fa-question-circle"></i></a>
@@ -533,11 +535,11 @@
                      <span>f''(X):</span>
                      <textarea class="form-control" rows="3" id="input_m2"></textarea>
                      <span>X0:</span>
-                     <input class="form-control" id="xnumber_m" value='-0.7'>
+                     <input class="form-control" id="xnumber_m" value=''>
                      <span>Tolerance:</span>
-                     <input class="form-control" id="tol_m" value='0.000005'>
+                     <input class="form-control" id="tol_m" value=''>
                      <span>Iterations:</span>
-                     <input class="form-control" id="iteration_m" value='100'>
+                     <input class="form-control" id="iteration_m" value=''>
                   </div>
                   <input type="button" class="btn btn-primary btn-lg btn-block" name="" id="method7" value="Calculate">
                   <a href="" class="pull-right" data-toggle="modal" data-target="#multiple-roots-modal">Help <i class="fa fa-question-circle"></i></a>

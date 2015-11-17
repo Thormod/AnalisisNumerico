@@ -107,7 +107,7 @@ $(document).ready(function() {
 
 function add_point(nextInput, id, method){
     var equ = '';
-    equ += '<div class="row" id='+method+'id'+nextInput+'><div class="col-lg-6"><span>X:</span><input class="form-control" id="'+method+'x'+nextInput+'"></div><div class="col-lg-6"><span>Y:</span><input class="form-control" id="'+method+'y'+nextInput+'"></div></div>';
+    equ += '<div class="row" id='+method+'id'+nextInput+'><div class="col-lg-6"><span>X '+nextInput+':</span><input class="form-control" id="'+method+'x'+nextInput+'"></div><div class="col-lg-6"><span>Y '+nextInput+':</span><input class="form-control" id="'+method+'y'+nextInput+'"></div></div>';
 
     $("#"+id).append(equ);
     nextInput++;
