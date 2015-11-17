@@ -87,6 +87,32 @@ $(document).ready(function() {
         simpson_3_8_2();
 
     });
+
+    //Differentiation with 2 points
+    $("#method4").on("click", function(event) {
+        differentiation_2_points();
+    });
+
+    //Differentiation with 3 points a
+    $("#method5").on("click", function(event) {
+        differentiation_3_points_1()
+    });
+
+    //Differentiation with 3 points b
+    $("#method6").on("click", function(event) {
+        differentiation_3_points_2()
+    });
+
+    //Differentiation with 3 points c
+    $("#method7").on("click", function(event) {
+        differentiation_3_points_3()
+    });
+
+    //Differentiation with 5 points 
+    $("#method8").on("click", function(event) {
+        differentiation_5_points()
+    });
+
 });
 
 /********************     Buttons functions   ***************************************/
@@ -496,6 +522,229 @@ function simpson_3_8_2(){
     $("#simpson-3-8-mat").append('Result: <br>');
     $("#simpson-3-8-mat").append('The integral between '+a+' to '+b+' of '+f1+' is '+ result+' with '+error+' of error');
 
+}
+
+function differentiation_2_points(){
+
+    var f1 = document.getElementById("dif-2-input_f").value;
+    var f2 = document.getElementById("dif-2-input_f_2").value;
+
+    var x0 = parseFloat($("#dif-2-x").val());
+    var h = parseFloat($("#dif-2-h").val());
+    var zi = parseFloat($("#dif-2-zi").val());
+
+    var aux_a = valueOf_fp({
+                "x": x0+h,
+                "y": 0
+            }, f1);
+
+    var num = aux_a;
+
+    aux_a = valueOf_fp({
+                "x": x0,
+                "y": 0
+            }, f1);
+
+    num -= aux_a;
+
+    num = num/h;
+
+    aux_a = valueOf_fp({
+                "x": zi,
+                "y": 0
+            }, f2);
+    var result = num;
+    var error = (h/2) * aux_a;
+
+     $("#dif-2-mat").empty();
+     $("#dif-2-mat").append('f´(x0) = ( f( x0 + h ) ) / h - h/2 * f´´(zi)<br>');
+     $("#dif-2-mat").append('f´('+x0+') = ( f( '+ x0 + h +' ) ) / '+h+' - '+h/2+ ' * '+aux_a+'<hr>');
+     $("#dif-2-mat").append('Result: ' +result+' with '+error+' of error');
+}
+
+function differentiation_3_points_1(){
+
+    var f1 = document.getElementById("dif-3-1-input_f").value;
+    var f3 = document.getElementById("dif-3-1-input_f_3").value;
+
+    var x0 = parseFloat($("#dif-3-1-x").val());
+    var h = parseFloat($("#dif-3-1-h").val());
+    var zi = parseFloat($("#dif-3-1-zi").val());
+
+    var result = 0;
+
+    var aux_a = valueOf_fp({
+                "x": x0-2*h,
+                "y": 0
+            }, f1);
+
+    result += aux_a;
+
+    aux_a = valueOf_fp({
+                "x": x0-h,
+                "y": 0
+            }, f1);
+
+    result += aux_a * (-4);
+
+    aux_a = valueOf_fp({
+                "x": x0,
+                "y": 0
+            }, f1);
+
+    result += aux_a * 3;
+
+    result *= 1/(2*h);
+
+    aux_a = valueOf_fp({
+                "x": zi,
+                "y": 0
+            }, f3);   
+
+    var error = (Math.pow(h,2)/3)*aux_a;
+
+     $("#dif-3-1-mat").empty();
+     $("#dif-3-1-mat").append('f´(x0) = 1/2h * [f(x0 - 2h) - 4 * f(x0 - h) + 3 * f(x0)] + h^2/3 * f´´(zi)<br>');
+     $("#dif-3-1-mat").append('f´('+x0+') = '+1/(2*h)+' * [f('+ x0 - 2*h +') - 4 * f('+x0-h+') + 3* f('+x0+')] + '+Math.pow(h,2)/3+' * '+ aux_a+'<hr>');
+     $("#dif-3-1-mat").append('Result: ' +result+' with '+error+' of error'); 
+}
+
+function differentiation_3_points_2(){
+
+    var f1 = document.getElementById("dif-3-2-input_f").value;
+    var f3 = document.getElementById("dif-3-2-input_f_3").value;
+
+    var x0 = parseFloat($("#dif-3-2-x").val());
+    var h = parseFloat($("#dif-3-2-h").val());
+    var zi = parseFloat($("#dif-3-2-zi").val());
+
+    var result = 0;
+
+    var aux_a = valueOf_fp({
+                "x": x0,
+                "y": 0
+            }, f1);
+
+    result += aux_a * (-3);
+
+    aux_a = valueOf_fp({
+                "x": x0+h,
+                "y": 0
+            }, f1);
+
+    result += aux_a * 4;
+
+    aux_a = valueOf_fp({
+                "x": x0+2*h,
+                "y": 0
+            }, f1);
+
+    result += aux_a * (-1);
+
+    result *= 1/(2*h);
+
+    aux_a = valueOf_fp({
+                "x": zi,
+                "y": 0
+            }, f3);
+
+    var error = (Math.pow(h,2)/3)*aux_a;
+
+    $("#dif-3-2-mat").empty();
+    $("#dif-3-2-mat").append('f´(x0) = 1/2h * [-3 * f(x0) + 4 * f(x0+h) - f(x0+2h)] + h^2/3 * f´´´(zi) <br>');
+    $("#dif-3-2-mat").append('f´('+x0+') = '+1/(2*h)+' [ -3 * f('+x0+') + 4 * f('+x0+h+') - f('+x0+2*h+')] + '+error+' <hr>');
+    $("#dif-3-2-mat").append('Result: ' +result+' with '+error+' of error'); 
+
+}
+
+function differentiation_3_points_3(){
+
+    var f1 = document.getElementById("dif-3-3-input_f").value;
+    var f3 = document.getElementById("dif-3-3-input_f_3").value;
+
+    var x0 = parseFloat($("#dif-3-3-x").val());
+    var h = parseFloat($("#dif-3-3-h").val());
+    var zi = parseFloat($("#dif-3-3-zi").val());
+
+    var result = 0;
+
+    var aux_a = valueOf_fp({
+                "x": x0-h,
+                "y": 0
+            }, f1);
+
+    result += aux_a *(-1);
+
+    aux_a = valueOf_fp({
+                "x": x0+h,
+                "y": 0
+            }, f1);
+    result += aux_a;
+
+    aux_a = valueOf_fp({
+                "x": zi,
+                "y": 0
+            }, f3);
+
+    var error = (Math.pow(h,2)/6)*aux_a;
+
+    result *= (1/(2*h));
+
+    $("#dif-3-3-mat").empty();
+    $("#dif-3-3-mat").append('f´(x0) = 1/2h * [-f(x0-h) + f(x0+h)] + h^2/6 * f´´´(zi)<br>');
+    $("#dif-3-3-mat").append('f´('+x0+') = '+1/(2*h)+' * [-f('+x0+h+')] + '+error+'<hr>');
+    $("#dif-3-3-mat").append('Result: ' +result+' with '+error+' of error'); 
+
+}
+
+function differentiation_5_points(){
+    var f1 = document.getElementById("dif-5-input_f").value;
+    var f5 = document.getElementById("dif-5-input_f_5").value;
+
+    var x0 = parseFloat($("#dif-5-x").val());
+    var h = parseFloat($("#dif-5-h").val());
+    var zi = parseFloat($("#dif-5-zi").val());
+
+    var result = 0;
+
+    var aux_a = valueOf_fp({
+                "x": x0-2*h,
+                "y": 0
+            }, f1);
+
+    result += aux_a;
+
+    aux_a = valueOf_fp({
+                "x": x0-h,
+                "y": 0
+            }, f1);
+    result += aux_a * (-8);
+
+    aux_a = valueOf_fp({
+                "x": x0+h,
+                "y": 0
+            }, f1);
+    result += aux_a * 8;
+
+    aux_a = valueOf_fp({
+                "x": x0+2*h,
+                "y": 0
+            }, f1);
+    result += aux_a * (-1);
+
+    result = result/(12*h);
+
+    aux_a = valueOf_fp({
+                "x": zi,
+                "y": 0
+            }, f5);
+
+    var error = (Math.pow(h,4)/30) * aux_a;
+    
+    $("#dif-5-mat").empty();
+    $("#dif-5-mat").append('f(x0) = ( f(x0-2h) - 8f(x0-h) + 8f(x0+h) - f(x0+2h) ) / 12h * h^4/30 * f´5´(zi) <br>');
+    $("#dif-5-mat").append('f('+x0+') = ( f('+(x0-2*h)+') - 8f('+x0+h+') - f('+x0+2*h+') ) / '+12*h+' * '+error+' <hr>');
+    $("#dif-5-mat").append('Result: ' +result+' with '+error+' of error'); 
 }
 
 /***********************************************************************************/
