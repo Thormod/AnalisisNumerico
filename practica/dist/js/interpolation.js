@@ -10,6 +10,8 @@ $(document).ready(function() {
     var nextInput3 = 1;
     var nextInput4 = 1;
 
+    var prueba = new Array(1,0.6747,1.2,0.8491,1.4,1.1214,1.6,1.4921,1.8,1.9607,2,2.5258);
+
     $("#equations-add-point").on("click", function(event) {
     	nextInput1 = add_point(nextInput1, "equations-control-points", "e");
     });
@@ -83,8 +85,6 @@ $(document).ready(function() {
         y = divide_array_y(arr);
 
         lagrange(arr.length/2,x,y);
-
-        //vandermonde_matrix(x,y,"lagrange");
     });
      //Neville
      $("#method4").on("click", function(event) {
@@ -394,7 +394,10 @@ function lagrange(size, x, y){
         pol += '<br>';
         res += product * y[k];
     };
+
+    $("#lagrange-mat").empty();
     $("#lagrange-mat").append(pol);
+    $("#lagrange-area").empty();
     $("#lagrange-area").append('P('+value+') = '+res);
 
 }
@@ -415,7 +418,7 @@ function neville(size, x, y){
         };
     };
 
-
+    $("#neville-area").empty();
     $("#neville-area").append('P('+value+') = '+arr[size-1][size-1]);
 
     mat_out(arr, "neville");
